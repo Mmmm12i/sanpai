@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="参拝帳">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#c9381f">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<title>神社参拝帳</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: 静かで丁寧、参拝の記録帳
+   IDEA: 御朱印帳 — 朱の表紙、白い和紙の頁、朱印のチェック
+   PICTURE: 朱の帯に鳥居と参拝数、その下に一覧そのもの
+   COLOUR and TYPE: 朱 #c9381f・白・墨、夜は深い墨色。しっぽり明朝 + 禅角ゴシック
+   LAYOUT: 帯 → タブ → 検索 → 都道府県ごとの一覧。詳細は下から出るシート */
+:root{color-scheme:light dark;--bg:light-dark(#fbfaf7,#121417);--ink:light-dark(#1c1a18,#ece8e1);--paper:light-dark(#fff,#1b1e23);--line:light-dark(#e7e2d9,#2d3139);--mute:light-dark(#6e675f,#a39d94);--shu:light-dark(#c9381f,#e05a3e);--band:light-dark(#c9381f,#7e2414);--soft:light-dark(#fbeae5,#3a1d17)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Zen Kaku Gothic New",system-ui,sans-serif;overflow-x:clip}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--shu);outline-offset:2px}
+h1,h2,h3{font-family:"Shippori Mincho B1",serif;margin:0;line-height:1.1;text-wrap:balance}
+.band{background:var(--band);color:#fff;padding:calc(clamp(22px,4vw,44px) + env(safe-area-inset-top)) max(5vw,16px,env(safe-area-inset-right)) 26px;position:relative;overflow:hidden}
+.band .in{max-width:1000px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:end;position:relative}
+.band h1{font-size:clamp(32px,6vw,48px)}
+.band p{margin:6px 0 0;opacity:.88}
+.torii{position:absolute;right:-30px;top:-10px;width:300px;opacity:.16;pointer-events:none}
+.big{font-family:"Shippori Mincho B1",serif;font-size:clamp(40px,9vw,64px);font-weight:800;line-height:1;text-align:right}
+.big small{font-size:18px;font-weight:700;margin-left:4px}
+.sub{text-align:right;font-size:14px;opacity:.9}
+.pw{grid-column:1/-1;display:flex;align-items:center;gap:12px}
+.pw b{font-family:"Shippori Mincho B1",serif;font-size:28px;font-weight:800;white-space:nowrap;min-width:3.6em;text-align:right}
+.pstat{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;opacity:.92;margin-top:-6px}
+.pstat span b{font-size:16px}
+.prog{flex:1;height:10px;background:rgba(255,255,255,.25);border-radius:4px;overflow:hidden}
+.prog i{display:block;height:100%;background:#fff;border-radius:4px;transition:width .5s}
+.tabs{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs .in{max-width:1000px;margin:auto;display:flex;padding:0 max(5vw,16px) 0;gap:4px}
+.tab{flex:1;min-height:48px;border:0;background:none;border-bottom:3px solid transparent;font-weight:700;color:var(--mute)}
+.tab[aria-selected=true]{color:var(--shu);border-color:var(--shu)}
+main{max-width:1000px;margin:auto;padding:16px max(5vw,16px) 80px}
+.tools{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px}
+input[type=search],select,input[type=text],input[type=date],textarea{width:100%;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);font-size:16px}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px;width:fit-content;max-width:100%}
+.seg button{border:0;background:var(--paper);min-height:40px;padding:0 14px;font-size:14px}
+.seg button[aria-pressed=true]{background:var(--shu);color:#fff}
+.note{font-size:13px;color:var(--mute);margin:10px 0 0}
+.grp{margin-top:22px}
+.grp h2{font-size:20px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.grp h2 span{font:700 14px "Zen Kaku Gothic New",sans-serif;color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0}
+.row{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--line)}
+.chk{flex:none;width:48px;height:52px;border:0;background:none;display:grid;place-items:center}
+.chk b{width:26px;height:26px;border:2px solid var(--mute);border-radius:6px;display:grid;place-items:center;transition:background .15s,border-color .15s}
+.chk svg{width:18px;height:18px;opacity:0}
+.done .chk b{background:var(--shu);border-color:var(--shu)}
+.done .chk svg{opacity:1}
+.info{flex:1;border:0;background:none;text-align:left;padding:8px 4px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 10px;align-items:center;min-height:52px}
+.nm{font-weight:700}
+.ct{font-size:13px;color:var(--mute);grid-column:1}
+.meta{grid-row:1/3;grid-column:2;font-size:12px;color:var(--shu);text-align:right;white-space:nowrap}
+.mine{font-size:11px;border:1px solid var(--mute);border-radius:4px;padding:0 4px;margin-left:6px;color:var(--mute);font-weight:400}
+.btn{min-height:44px;padding:0 18px;border-radius:10px;border:1px solid var(--shu);background:var(--paper);color:var(--shu);font-weight:700}
+.btn.p{background:var(--shu);color:#fff}
+.btn.del{border-color:var(--mute);color:var(--mute)}
+.map{color:var(--shu);font-weight:700;display:inline-block;padding:10px 0}
+.gcard{border:1px solid var(--line);border-radius:14px;background:var(--paper);margin-top:14px;padding:0 14px 6px}
+.gcard.comp{border-color:var(--shu)}
+.ghead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;width:100%;border:0;background:none;text-align:left;padding:14px 0 10px;align-items:center}
+.gt{font:800 19px/1.3 "Shippori Mincho B1",serif}
+.gp{font:800 24px "Shippori Mincho B1",serif;color:var(--shu);white-space:nowrap}
+.gbar{grid-column:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.gbar i{display:block;height:100%;background:var(--shu)}
+.gn{font-size:13px;color:var(--mute);white-space:nowrap}
+.ok{font:700 12px "Zen Kaku Gothic New",sans-serif;background:var(--shu);color:#fff;border-radius:4px;padding:1px 6px;margin-left:8px;vertical-align:3px}
+.alt{border-left:3px solid var(--line);padding-left:10px;margin:8px 0;list-style:none}
+.addbox{margin-top:28px;padding:18px;border:1px dashed var(--line);border-radius:14px;background:var(--paper)}
+.addbox h3{font-size:18px;margin-bottom:10px}
+.f3{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1.4fr) auto;gap:8px}
+.empty{padding:40px 0;text-align:center;color:var(--mute)}
+.more{display:block;margin:18px auto 0}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:8px}
+.tile{border:0;padding:0;background:var(--paper);border-radius:10px;overflow:hidden;text-align:left;box-shadow:0 1px 0 var(--line),0 0 0 1px var(--line)}
+.tile img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--soft)}
+.tile span{display:block;padding:6px 8px;font-size:13px;font-weight:700}
+.tile em{display:block;font-style:normal;font-weight:400;color:var(--mute);font-size:12px}
+.pref{display:grid;grid-template-columns:5.5em minmax(0,1fr) 5.5em;gap:10px;align-items:center;width:100%;border:0;border-bottom:1px solid var(--line);background:none;min-height:44px;text-align:left}
+.pref .bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.pref .bar i{display:block;height:100%;background:var(--shu)}
+.pref .n{text-align:right;font-size:15px;font-weight:700;color:var(--ink);white-space:nowrap;line-height:1.2;padding:4px 0}
+.pref .n small{font-size:12px;font-weight:400;color:var(--mute)}
+.pref.full .n{color:var(--shu);font-weight:700}
+.ov{position:fixed;inset:0;background:rgba(10,8,6,.55);z-index:20;display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sheet{background:var(--bg);width:min(640px,100%);max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:20px max(4vw,16px) 28px;animation:up .25s ease}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media(prefers-reduced-motion:reduce){.sheet{animation:none}.prog i{transition:none}}
+.sh-h{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.sh-h h2{font-size:clamp(26px,6vw,34px)}
+.x{width:44px;height:44px;border:0;background:var(--paper);border-radius:50%;font-size:22px;flex:none}
+.big-chk{display:flex;align-items:center;gap:12px;width:100%;margin:16px 0;min-height:56px;padding:0 16px;border-radius:12px;border:2px solid var(--shu);background:var(--paper);color:var(--shu);font-weight:700;font-size:17px}
+.big-chk.on{background:var(--shu);color:#fff}
+.big-chk b{width:26px;height:26px;border:2px solid currentColor;border-radius:6px;display:grid;place-items:center}
+.lbl{display:block;font-weight:700;font-size:14px;margin:14px 0 6px}
+.sgal{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.sgal figure{margin:0;position:relative}
+.sgal img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block;background:var(--soft);cursor:zoom-in}
+.sgal .rm{position:absolute;top:4px;right:4px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:16px}
+.up{display:grid;place-items:center;aspect-ratio:3/4;border:2px dashed var(--shu);border-radius:8px;color:var(--shu);font-weight:700;font-size:14px;text-align:center;cursor:pointer;padding:6px}
+.up input{position:absolute;width:1px;height:1px;opacity:0}
+#lb{align-items:center;flex-direction:column;gap:10px;padding:16px;cursor:zoom-out}
+#lb img{max-width:100%;max-height:82vh;border-radius:6px}
+#lb p{color:#fff;margin:0}
+.cf{background:var(--bg);border-radius:14px;padding:20px;width:min(360px,92%);margin:auto}
+.cf p{margin:0 0 16px}
+.cf div{display:flex;gap:8px;justify-content:flex-end}
+#cfo{align-items:center}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw}
+#toast.on{opacity:1}
+@media(max-width:600px){.tools{grid-template-columns:1fr 1fr}.tools input{grid-column:1/-1}.f3{grid-template-columns:1fr 1fr}.f3 input:first-child{grid-column:1/-1}.f3 button{grid-column:1/-1}.band .in{grid-template-columns:1fr}.big,.sub{text-align:left}.pref{grid-template-columns:4.8em minmax(0,1fr) 4.6em}}
+</style>
+</head>
+<body>
+<header class="band">
+  <svg class="torii" viewBox="0 0 300 260" aria-hidden="true"><path fill="#fff" d="M10 40 Q150 10 290 40 L286 62 Q150 36 14 62Z"/><rect x="34" y="78" width="232" height="16" rx="3" fill="#fff"/><rect x="66" y="56" width="22" height="204" fill="#fff"/><rect x="212" y="56" width="22" height="204" fill="#fff"/><rect x="140" y="58" width="20" height="22" fill="#fff"/></svg>
+  <div class="in">
+    <div><h1>神社参拝帳</h1><p id="st">記録を読み込んでいます…</p></div>
+    <div><div class="big" id="cnt">0<small>社</small></div><div class="sub" id="cnt2">参拝済</div></div>
+    <div class="pw"><div class="prog"><i id="bar" style="width:0"></i></div><b id="pct">0%</b></div>
+    <div class="pstat" id="pstat"></div>
+  </div>
+</header>
+<nav class="tabs"><div class="in" role="tablist">
+  <button class="tab" role="tab" data-v="list" aria-selected="true">神社一覧</button>
+  <button class="tab" role="tab" data-v="meguri" aria-selected="false">巡り</button>
+  <button class="tab" role="tab" data-v="book" aria-selected="false">御朱印帳</button>
+  <button class="tab" role="tab" data-v="pref" aria-selected="false">都道府県</button>
+</div></nav>
+<main>
+  <section id="v-list">
+    <div class="tools">
+      <input type="search" id="q" placeholder="神社名・市区町村で検索" aria-label="検索">
+      <select id="fr" aria-label="地方"></select>
+      <select id="fp" aria-label="都道府県"></select>
+    </div>
+    <div class="seg" id="seg"><button data-s="all" aria-pressed="true">すべて</button><button data-s="done" aria-pressed="false">参拝済</button><button data-s="todo" aria-pressed="false">未参拝</button><button data-s="ink" aria-pressed="false">御朱印あり</button></div>
+    <p class="note" id="hits"></p>
+    <div id="out"></div>
+    <div class="addbox">
+      <h3>一覧にない神社を追加</h3>
+      <form class="f3" id="addf">
+        <input type="text" id="an" placeholder="神社名（例：○○八幡宮）" required aria-label="神社名">
+        <select id="ap" aria-label="都道府県"></select>
+        <input type="text" id="ac" placeholder="市区町村" aria-label="市区町村">
+        <button class="btn p">追加</button>
+      </form>
+    </div>
+  </section>
+  <section id="v-meguri" hidden><div id="megout"></div></section>
+  <section id="v-book" hidden><div id="bookout"></div></section>
+  <section id="v-pref" hidden><p class="note" id="prefsum"></p><div id="prefout"></div>
+    <div class="addbox" id="bk"><h3>データのバックアップ</h3>
+      <p class="note" style="margin:0 0 12px">参拝記録・メモ・御朱印の画像を1つのファイルに書き出します。機種変更のときや、別の版（Claude版⇔単独版）へ移すときに読み込んでください。</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn p" id="exp">バックアップを書き出す</button><label class="btn" style="display:inline-grid;place-items:center;cursor:pointer">バックアップを読み込む<input type="file" id="imp" accept=".json,application/json" style="position:absolute;width:1px;height:1px;opacity:0"></label></div>
+      <p class="note" id="bkinfo"></p>
+    </div>
+  </section>
+</main>
+<div class="ov" id="ov"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="ov" id="lb"><img alt=""><p></p></div>
+<div class="ov" id="cfo"><div class="cf"><p id="cfm"></p><div><button class="btn del" id="cfn">やめる</button><button class="btn p" id="cfy">削除する</button></div></div></div>
+<div id="toast" role="status"></div>
+<script>
+{
+const RAW=[
+["北海道","北海道・東北","北海道神宮:札幌市中央区,札幌護國神社:札幌市中央区,西野神社:札幌市西区,北海道護國神社:旭川市,上川神社:旭川市,旭川神社:旭川市,函館八幡宮:函館市,湯倉神社:函館市,船魂神社:函館市,函館護國神社:函館市,樽前山神社:苫小牧市,帯廣神社:帯広市,厳島神社:釧路市,住吉神社:小樽市,北見神社:北見市,室蘭八幡宮:室蘭市,姥神大神宮:江差町,金刀比羅神社:根室市,北門神社:稚内市"],
+["青森県","北海道・東北","岩木山神社:弘前市,弘前八幡宮:弘前市,青森縣護國神社:弘前市,善知鳥神社:青森市,廣田神社:青森市,櫛引八幡宮:八戸市,蕪嶋神社:八戸市,猿賀神社:平川市,高山稲荷神社:つがる市,十和田神社:十和田市"],
+["岩手県","北海道・東北","駒形神社:奥州市,盛岡八幡宮:盛岡市,櫻山神社:盛岡市,三ツ石神社:盛岡市,岩手護國神社:盛岡市,志和稲荷神社:紫波町,早池峰神社:花巻市,卯子酉神社:遠野市"],
+["宮城県","北海道・東北","鹽竈神社:塩竈市,志波彦神社:塩竈市,大崎八幡宮:仙台市青葉区,青葉神社:仙台市青葉区,仙台東照宮:仙台市青葉区,宮城縣護國神社:仙台市青葉区,榴岡天満宮:仙台市宮城野区,秋保神社:仙台市太白区,竹駒神社:岩沼市,金蛇水神社:岩沼市,金華山黄金山神社:石巻市"],
+["秋田県","北海道・東北","太平山三吉神社:秋田市,古四王神社:秋田市,彌高神社:秋田市,八幡秋田神社:秋田市,秋田県護国神社:秋田市,唐松神社:大仙市,真山神社:男鹿市,角館総鎮守神明社:仙北市"],
+["山形県","北海道・東北","出羽三山神社:鶴岡市,湯殿山神社:鶴岡市,月山神社:鶴岡市,荘内神社:鶴岡市,大物忌神社:遊佐町,鳥海月山両所宮:山形市,六椹八幡宮:山形市,山形県護国神社:山形市,熊野大社:南陽市,上杉神社:米沢市"],
+["福島県","北海道・東北","伊佐須美神社:会津美里町,都都古別神社:棚倉町,都々古別神社（八槻）:棚倉町,開成山大神宮:郡山市,福島縣護國神社:福島市,福島稲荷神社:福島市,相馬中村神社:相馬市,相馬太田神社:南相馬市,相馬小高神社:南相馬市,隠津島神社:二本松市,安達太良神社:本宮市,大國魂神社:いわき市,飯野八幡宮:いわき市,土津神社:猪苗代町,南湖神社:白河市"],
+["茨城県","関東","鹿島神宮:鹿嶋市,息栖神社:神栖市,笠間稲荷神社:笠間市,大洗磯前神社:大洗町,酒列磯前神社:ひたちなか市,筑波山神社:つくば市,常磐神社:水戸市,水戸八幡宮:水戸市,吉田神社:水戸市,茨城縣護國神社:水戸市,静神社:那珂市,御岩神社:日立市,大杉神社:稲敷市,西金砂神社:常陸太田市"],
+["栃木県","関東","日光東照宮:日光市,日光二荒山神社:日光市,宇都宮二荒山神社:宇都宮市,蒲生神社:宇都宮市,栃木縣護國神社:宇都宮市,古峯神社:鹿沼市,鹿沼今宮神社:鹿沼市,足利織姫神社:足利市,那須温泉神社:那須町,大前神社:真岡市,太平山神社:栃木市,唐沢山神社:佐野市"],
+["群馬県","関東","一之宮貫前神社:富岡市,妙義神社:富岡市,榛名神社:高崎市,高崎神社:高崎市,群馬県護国神社:高崎市,赤城神社:前橋市,前橋東照宮:前橋市,上野国総社神社:前橋市,伊香保神社:渋川市,世良田東照宮:太田市,冠稲荷神社:太田市,桐生天満宮:桐生市,白根神社:草津町"],
+["埼玉県","関東","武蔵一宮氷川神社:さいたま市大宮区,埼玉県護国神社:さいたま市大宮区,調神社:さいたま市浦和区,氷川女體神社:さいたま市緑区,秩父神社:秩父市,三峯神社:秩父市,聖神社:秩父市,秩父今宮神社:秩父市,寶登山神社:長瀞町,鷲宮神社:久喜市,川越氷川神社:川越市,川越八幡宮:川越市,三芳野神社:川越市,高麗神社:日高市,金鑚神社:神川町,久伊豆神社:越谷市,箭弓稲荷神社:東松山市,前玉神社:行田市"],
+["千葉県","関東","香取神宮:香取市,玉前神社:一宮町,安房神社:館山市,洲崎神社:館山市,鶴谷八幡宮:館山市,千葉神社:千葉市中央区,千葉縣護國神社:千葉市中央区,検見川神社:千葉市花見川区,意富比神社（船橋大神宮）:船橋市,麻賀多神社:成田市,飯香岡八幡宮:市原市,櫻木神社:野田市,葛飾八幡宮:市川市,東大社:東庄町,猿田神社:銚子市,高家神社:南房総市"],
+["東京都","関東","明治神宮:渋谷区,東郷神社:渋谷区,代々木八幡宮:渋谷区,金王八幡宮:渋谷区,鳩森八幡神社:渋谷区,靖國神社:千代田区,東京大神宮:千代田区,日枝神社:千代田区,神田神社（神田明神）:千代田区,平河天満宮:千代田区,湯島天満宮:文京区,根津神社:文京区,白山神社:文京区,北野神社（牛天神）:文京区,富岡八幡宮:江東区,亀戸天神社:江東区,亀戸香取神社:江東区,浅草神社:台東区,上野東照宮:台東区,今戸神社:台東区,小野照崎神社:台東区,鳥越神社:台東区,下谷神社:台東区,鷲神社:台東区,乃木神社:港区,赤坂氷川神社:港区,芝大神宮:港区,愛宕神社:港区,出雲大社東京分祠:港区,十番稲荷神社:港区,烏森神社:港区,虎ノ門金刀比羅宮:港区,花園神社:新宿区,穴八幡宮:新宿区,赤城神社:新宿区,水天宮:中央区,波除神社:中央区,小網神社:中央区,鐵砲洲稲荷神社:中央区,住吉神社:中央区,牛嶋神社:墨田区,三囲神社:墨田区,高木神社:墨田区,品川神社:品川区,荏原神社:品川区,大鳥神社:目黒区,松陰神社:世田谷区,大宮八幡宮:杉並区,阿佐ヶ谷神明宮:杉並区,王子神社:北区,王子稲荷神社:北区,赤羽八幡神社:北区,素盞雄神社:荒川区,柴又八幡神社:葛飾区,葛西神社:葛飾区,新田神社:大田区,穴守稲荷神社:大田区,多摩川浅間神社:大田区,池袋氷川神社:豊島区,大塚天祖神社:豊島区,千住神社:足立区,大鷲神社:足立区,大國魂神社:府中市,谷保天満宮:国立市,武蔵御嶽神社:青梅市,阿伎留神社:あきる野市,小野神社:多摩市,布多天神社:調布市,田無神社:西東京市,子安神社:八王子市"],
+["神奈川県","関東","鶴岡八幡宮:鎌倉市,鎌倉宮:鎌倉市,荏柄天神社:鎌倉市,銭洗弁財天宇賀福神社:鎌倉市,佐助稲荷神社:鎌倉市,御霊神社:鎌倉市,寒川神社:寒川町,箱根神社:箱根町,九頭龍神社:箱根町,箱根元宮:箱根町,伊勢山皇大神宮:横浜市西区,神奈川縣護國神社:横浜市西区,金刀比羅大鷲神社:横浜市西区,師岡熊野神社:横浜市港北区,江島神社:藤沢市,白旗神社:藤沢市,大山阿夫利神社:伊勢原市,比々多神社:伊勢原市,走水神社:横須賀市,叶神社:横須賀市,森戸大明神:葉山町,報徳二宮神社:小田原市,稲毛神社:川崎市川崎区,若宮八幡宮:川崎市川崎区,川勾神社:二宮町,前鳥神社:平塚市,平塚八幡宮:平塚市,六所神社:大磯町,有鹿神社:海老名市,座間神社:座間市"],
+["新潟県","中部","彌彦神社:弥彦村,居多神社:上越市,春日山神社:上越市,白山神社:新潟市中央区,蒲原神社:新潟市中央区,新潟縣護國神社:新潟市中央区,度津神社:佐渡市,天津神社:糸魚川市,奴奈川神社:糸魚川市,蒼柴神社:長岡市,金峯神社:長岡市,寶徳山稲荷大社:長岡市"],
+["富山県","中部","雄山神社:立山町,射水神社:高岡市,気多神社:高岡市,高岡関野神社:高岡市,高瀬神社:南砺市,日枝神社:富山市,於保多神社:富山市,越中稲荷神社:富山市,富山縣護國神社:富山市,櫛田神社:射水市"],
+["石川県","中部","白山比咩神社:白山市,気多大社:羽咋市,尾山神社:金沢市,石浦神社:金沢市,金澤神社:金沢市,宇多須神社:金沢市,尾崎神社:金沢市,椿原天満宮:金沢市,石川護國神社:金沢市,安宅住吉神社:小松市,小松天満宮:小松市,能登生國玉比古神社:七尾市,重蔵神社:輪島市,須須神社:珠洲市"],
+["福井県","中部","氣比神宮:敦賀市,金崎宮:敦賀市,常宮神社:敦賀市,若狭彦神社:小浜市,若狭姫神社:小浜市,足羽神社:福井市,福井神社:福井市,藤島神社:福井市,佐佳枝廼社:福井市,毛谷黒龍神社:福井市,福井県護国神社:福井市,劔神社:越前町,大瀧神社:越前市,平泉寺白山神社:勝山市,大湊神社:坂井市"],
+["山梨県","中部","北口本宮冨士浅間神社:富士吉田市,新屋山神社:富士吉田市,小室浅間神社:富士吉田市,浅間神社（甲斐国一宮）:笛吹市,美和神社:笛吹市,武田神社:甲府市,金櫻神社:甲府市,山梨縣護國神社:甲府市,河口浅間神社:富士河口湖町,富士御室浅間神社:富士河口湖町,大井俣窪八幡神社:山梨市"],
+["長野県","中部","諏訪大社 上社本宮:諏訪市,諏訪大社 上社前宮:茅野市,諏訪大社 下社秋宮:下諏訪町,諏訪大社 下社春宮:下諏訪町,戸隠神社:長野市,皆神神社:長野市,美和神社:長野市,穂高神社:安曇野市,有明山神社:安曇野市,生島足島神社:上田市,真田神社:上田市,武水別神社:千曲市,四柱神社:松本市,深志神社:松本市,長野縣護國神社:松本市,小野神社:塩尻市,矢彦神社:辰野町,新海三社神社:佐久市,懐古神社:小諸市,仁科神明宮:大町市"],
+["岐阜県","中部","南宮大社:垂井町,水無神社:高山市,日枝神社:高山市,櫻山八幡宮:高山市,飛騨護國神社:高山市,伊奈波神社:岐阜市,金神社:岐阜市,手力雄神社:岐阜市,加納天満宮:岐阜市,岐阜護國神社:岐阜市,濃飛護國神社:大垣市,大垣八幡神社:大垣市,千代保稲荷神社:海津市,白山中居神社:郡上市,長滝白山神社:郡上市,洲原神社:美濃市"],
+["静岡県","中部","富士山本宮浅間大社:富士宮市,村山浅間神社:富士宮市,富知六所浅間神社:富士市,須山浅間神社:裾野市,三嶋大社:三島市,久能山東照宮:静岡市駿河区,静岡浅間神社:静岡市葵区,静岡縣護國神社:静岡市葵区,小國神社:森町,事任八幡宮:掛川市,來宮神社:熱海市,伊豆山神社:熱海市,秋葉山本宮秋葉神社:浜松市天竜区,五社神社・諏訪神社:浜松市中央区,井伊谷宮:浜松市浜名区,白浜神社:下田市,大瀬神社:沼津市,焼津神社:焼津市,大井神社:島田市,府八幡宮:磐田市,淡海國玉神社:磐田市,矢奈比賣神社:磐田市"],
+["愛知県","中部","熱田神宮:名古屋市熱田区,名古屋東照宮:名古屋市中区,那古野神社:名古屋市中区,若宮八幡社:名古屋市中区,洲崎神社:名古屋市中区,愛知縣護國神社:名古屋市中区,城山八幡宮:名古屋市千種区,高牟神社:名古屋市千種区,豊國神社:名古屋市中村区,真清田神社:一宮市,砥鹿神社:豊川市,菟足神社:豊川市,大縣神社:犬山市,針綱神社:犬山市,三光稲荷神社:犬山市,田縣神社:小牧市,尾張大國霊神社:稲沢市,知立神社:知立市,津島神社:津島市,猿投神社:豊田市,挙母神社:豊田市,伊賀八幡宮:岡崎市,六所神社:岡崎市,龍城神社:岡崎市,安久美神戸神明社:豊橋市,石座神社:新城市"],
+["三重県","近畿","皇大神宮（伊勢神宮 内宮）:伊勢市,豊受大神宮（伊勢神宮 外宮）:伊勢市,月讀宮:伊勢市,月讀荒御魂宮:伊勢市,伊佐奈岐宮:伊勢市,伊佐奈弥宮:伊勢市,荒祭宮:伊勢市,風日祈宮:伊勢市,多賀宮:伊勢市,土宮:伊勢市,風宮:伊勢市,月夜見宮:伊勢市,倭姫宮:伊勢市,猿田彦神社:伊勢市,二見興玉神社:伊勢市,伊雑宮:志摩市,瀧原宮:大紀町,瀧原竝宮:大紀町,伊射波神社:鳥羽市,椿大神社:鈴鹿市,都波岐奈加等神社:鈴鹿市,多度大社:桑名市,桑名宗社（春日神社）:桑名市,敢國神社:伊賀市,花窟神社:熊野市,結城神社:津市,北畠神社:津市,三重縣護國神社:津市"],
+["滋賀県","近畿","多賀大社:多賀町,日吉大社:大津市,近江神宮:大津市,建部大社:大津市,唐崎神社:大津市,白鬚神社:高島市,都久夫須麻神社（竹生島神社）:長浜市,長浜八幡宮:長浜市,豊国神社:長浜市,御上神社:野洲市,兵主大社:野洲市,日牟禮八幡宮:近江八幡市,賀茂神社:近江八幡市,沙沙貴神社:近江八幡市,太郎坊宮（阿賀神社）:東近江市,油日神社:甲賀市,田村神社:甲賀市,滋賀縣護國神社:彦根市"],
+["京都府","近畿","伏見稲荷大社:京都市伏見区,城南宮:京都市伏見区,御香宮神社:京都市伏見区,藤森神社:京都市伏見区,八坂神社:京都市東山区,安井金比羅宮:京都市東山区,地主神社:京都市東山区,豊国神社:京都市東山区,京都霊山護國神社:京都市東山区,新熊野神社:京都市東山区,粟田神社:京都市東山区,賀茂別雷神社（上賀茂神社）:京都市北区,今宮神社:京都市北区,建勲神社:京都市北区,平野神社:京都市北区,賀茂御祖神社（下鴨神社）:京都市左京区,河合神社:京都市左京区,平安神宮:京都市左京区,貴船神社:京都市左京区,吉田神社:京都市左京区,八大神社:京都市左京区,熊野神社:京都市左京区,熊野若王子神社:京都市左京区,由岐神社:京都市左京区,岡崎神社:京都市左京区,大豊神社:京都市左京区,北野天満宮:京都市上京区,晴明神社:京都市上京区,白峯神宮:京都市上京区,護王神社:京都市上京区,上御霊神社:京都市上京区,下御霊神社:京都市中京区,錦天満宮:京都市中京区,武信稲荷神社:京都市中京区,御金神社:京都市中京区,市比賣神社:京都市下京区,菅大臣神社:京都市下京区,六孫王神社:京都市南区,松尾大社:京都市西京区,大原野神社:京都市西京区,車折神社:京都市右京区,梅宮大社:京都市右京区,野宮神社:京都市右京区,石清水八幡宮:八幡市,宇治上神社:宇治市,宇治神社:宇治市,縣神社:宇治市,籠神社:宮津市,出雲大神宮:亀岡市,元伊勢内宮皇大神社:福知山市,元伊勢外宮豊受大神社:福知山市,御霊神社:福知山市"],
+["大阪府","近畿","住吉大社:大阪市住吉区,大依羅神社:大阪市住吉区,大阪天満宮:大阪市北区,露天神社（お初天神）:大阪市北区,綱敷天神社:大阪市北区,今宮戎神社:大阪市浪速区,難波八阪神社:大阪市浪速区,生國魂神社:大阪市天王寺区,安居神社:大阪市天王寺区,堀越神社:大阪市天王寺区,坐摩神社:大阪市中央区,豊國神社:大阪市中央区,御霊神社:大阪市中央区,少彦名神社:大阪市中央区,高津宮:大阪市中央区,玉造稲荷神社:大阪市中央区,大阪護國神社:大阪市住之江区,杭全神社:大阪市平野区,阿倍王子神社:大阪市阿倍野区,安倍晴明神社:大阪市阿倍野区,枚岡神社:東大阪市,石切劔箭神社:東大阪市,大鳥大社:堺市西区,方違神社:堺市堺区,水無瀬神宮:島本町,四條畷神社:四條畷市,道明寺天満宮:藤井寺市,誉田八幡宮:羽曳野市,服部天神宮:豊中市,泉井上神社:和泉市,聖神社:和泉市,日根神社:泉佐野市,三島鴨神社:高槻市,野見神社:高槻市,星田妙見宮:交野市,磐船神社:交野市,片埜神社:枚方市,意賀美神社:枚方市"],
+["兵庫県","近畿","生田神社:神戸市中央区,湊川神社:神戸市中央区,北野天満神社:神戸市中央区,長田神社:神戸市長田区,海神社:神戸市垂水区,兵庫縣神戸護國神社:神戸市灘区,弓弦羽神社:神戸市東灘区,保久良神社:神戸市東灘区,本住吉神社:神戸市東灘区,西宮神社:西宮市,廣田神社:西宮市,越木岩神社:西宮市,伊弉諾神宮:淡路市,伊和神社:宍粟市,出石神社:豊岡市,粟鹿神社:朝来市,射楯兵主神社（播磨国総社）:姫路市,姫路護國神社:姫路市,魚吹八幡神社:姫路市,松原八幡神社:姫路市,大石神社:赤穂市,柿本神社:明石市,住吉神社:明石市,高砂神社:高砂市,生石神社:高砂市,曽根天満宮:高砂市,荒井神社:高砂市,日岡神社:加古川市,多田神社:川西市,賣布神社:宝塚市,篠山春日神社:丹波篠山市"],
+["奈良県","近畿","春日大社:奈良市,率川神社:奈良市,氷室神社:奈良市,漢國神社:奈良市,奈良縣護國神社:奈良市,大神神社:桜井市,狭井神社:桜井市,檜原神社:桜井市,談山神社:桜井市,等彌神社:桜井市,石上神宮:天理市,大和神社:天理市,橿原神宮:橿原市,吉野水分神社:吉野町,金峯神社:吉野町,吉水神社:吉野町,丹生川上神社 中社:東吉野村,丹生川上神社 上社:川上村,丹生川上神社 下社:下市町,玉置神社:十津川村,天河大辨財天社:天川村,龍田大社:三郷町,廣瀬大社:河合町,葛城一言主神社:御所市,高鴨神社:御所市,鴨都波神社:御所市,往馬大社:生駒市,飛鳥坐神社:明日香村"],
+["和歌山県","近畿","熊野本宮大社:田辺市,闘雞神社:田辺市,熊野速玉大社:新宮市,神倉神社:新宮市,阿須賀神社:新宮市,熊野那智大社:那智勝浦町,飛瀧神社:那智勝浦町,日前神宮・國懸神宮:和歌山市,伊太祁曽神社:和歌山市,竈山神社:和歌山市,紀州東照宮:和歌山市,和歌浦天満宮:和歌山市,玉津島神社:和歌山市,淡嶋神社:和歌山市,刺田比古神社:和歌山市,和歌山縣護國神社:和歌山市,丹生都比売神社:かつらぎ町,須佐神社:有田市"],
+["鳥取県","中国","宇倍神社:鳥取市,樗谿神社（鳥取東照宮）:鳥取市,白兎神社:鳥取市,賀露神社:鳥取市,鳥取縣護國神社:鳥取市,倭文神社:湯梨浜町,大神山神社:米子市,大神山神社 奥宮:大山町,金持神社:日野町,波波伎神社:倉吉市"],
+["島根県","中国","出雲大社:出雲市,日御碕神社:出雲市,須佐神社:出雲市,万九千神社:出雲市,長浜神社:出雲市,熊野大社:松江市,八重垣神社:松江市,神魂神社:松江市,美保神社:松江市,佐太神社:松江市,松江神社:松江市,城山稲荷神社:松江市,揖夜神社:松江市,玉作湯神社:松江市,島根縣護國神社:松江市,物部神社:大田市,須我神社:雲南市,太皷谷稲成神社:津和野町,濱田護國神社:浜田市,水若酢神社:隠岐の島町,由良比女神社:西ノ島町,焼火神社:西ノ島町"],
+["岡山県","中国","吉備津神社:岡山市北区,吉備津彦神社:岡山市北区,岡山神社:岡山市北区,岡山縣護國神社:岡山市中区,玉井宮東照宮:岡山市中区,安仁神社:岡山市東区,石上布都魂神社:赤磐市,中山神社:津山市,作楽神社:津山市,高野神社:津山市,徳守神社:津山市,由加神社本宮:倉敷市,阿智神社:倉敷市,木野山神社:高梁市,備中国総社宮:総社市"],
+["広島県","中国","嚴島神社:廿日市市,速谷神社:廿日市市,大頭神社:廿日市市,広島護國神社:広島市中区,白神社:広島市中区,胡子神社:広島市中区,広島東照宮:広島市東区,饒津神社:広島市東区,尾長天満宮:広島市東区,素盞嗚神社:福山市,吉備津神社:福山市,草戸稲荷神社:福山市,沼名前神社:福山市,備後護國神社:福山市,亀山神社:呉市,艮神社:尾道市,多家神社:府中町,清神社:安芸高田市"],
+["山口県","中国","赤間神宮:下関市,住吉神社:下関市,忌宮神社:下関市,亀山八幡宮:下関市,防府天満宮:防府市,玉祖神社:防府市,元乃隅神社:長門市,松陰神社:萩市,志都岐山神社:萩市,椿八幡宮:萩市,野田神社:山口市,八坂神社:山口市,山口大神宮:山口市,今八幡宮:山口市,山口縣護國神社:山口市,琴崎八幡宮:宇部市,遠石八幡宮:周南市,吉香神社:岩国市,白崎八幡宮:岩国市"],
+["徳島県","四国","大麻比古神社:鳴門市,忌部神社:徳島市,一宮神社:徳島市,宅宮神社:徳島市,天石門別八倉比売神社:徳島市,徳島眉山天神社:徳島市,徳島縣護國神社:徳島市,上一宮大粟神社:神山町"],
+["香川県","四国","金刀比羅宮:琴平町,田村神社:高松市,屋島神社:高松市,石清尾八幡宮:高松市,白鳥神社:東かがわ市,讃岐宮（香川縣護國神社）:善通寺市,滝宮天満宮:綾川町,神谷神社:坂出市,白峰宮:坂出市,琴弾八幡宮:観音寺市,高屋神社:観音寺市"],
+["愛媛県","四国","大山祇神社:今治市,吹揚神社:今治市,伊佐爾波神社:松山市,伊豫豆比古命神社（椿神社）:松山市,東雲神社:松山市,湯神社:松山市,阿沼美神社:松山市,愛媛縣護國神社:松山市,石鎚神社:西条市,宇和津彦神社:宇和島市,和霊神社:宇和島市,少彦名神社:大洲市,伊豫稲荷神社:伊予市"],
+["高知県","四国","土佐神社:高知市,高知八幡宮:高知市,若宮八幡宮:高知市,潮江天満宮:高知市,山内神社:高知市,朝倉神社:高知市,高知縣護國神社:高知市,小村神社:日高村,須崎八幡宮:須崎市,一條神社:四万十市,不破八幡宮:四万十市"],
+["福岡県","九州・沖縄","太宰府天満宮:太宰府市,竈門神社:太宰府市,宗像大社:宗像市,織幡神社:宗像市,宮地嶽神社:福津市,筥崎宮:福岡市東区,香椎宮:福岡市東区,志賀海神社:福岡市東区,住吉神社:福岡市博多区,櫛田神社:福岡市博多区,警固神社:福岡市中央区,光雲神社:福岡市中央区,鳥飼八幡宮:福岡市中央区,福岡縣護國神社:福岡市中央区,紅葉八幡宮:福岡市早良区,愛宕神社:福岡市西区,高良大社:久留米市,水天宮:久留米市,風浪宮:大川市,英彦山神宮:添田町,筑紫神社:筑紫野市,宇美八幡宮:宇美町,美奈宜神社:朝倉市,三柱神社:柳川市,若松恵比須神社:北九州市若松区,小倉八坂神社:北九州市小倉北区,篠崎八幡神社:北九州市小倉北区,和布刈神社:北九州市門司区,甲宗八幡宮:北九州市門司区,岡田宮:北九州市八幡西区"],
+["佐賀県","九州・沖縄","祐徳稲荷神社:鹿島市,與止日女神社:佐賀市,佐嘉神社:佐賀市,松原神社:佐賀市,佐賀縣護國神社:佐賀市,千栗八幡宮:みやき町,唐津神社:唐津市,田島神社:唐津市,鏡神社:唐津市,宝当神社:唐津市,武雄神社:武雄市,陶山神社:有田町"],
+["長崎県","九州・沖縄","鎮西大社 諏訪神社:長崎市,松森天満宮:長崎市,長崎縣護國神社:長崎市,亀山八幡宮:佐世保市,大村神社:大村市,温泉神社:雲仙市,猛島神社:島原市,亀岡神社:平戸市,住吉神社:壱岐市,月讀神社:壱岐市,男嶽神社:壱岐市,小島神社:壱岐市,天手長男神社:壱岐市,海神神社:対馬市,和多都美神社:対馬市"],
+["熊本県","九州・沖縄","阿蘇神社:阿蘇市,加藤神社:熊本市中央区,熊本城稲荷神社:熊本市中央区,藤崎八旛宮:熊本市中央区,出水神社:熊本市中央区,熊本縣護國神社:熊本市中央区,健軍神社:熊本市東区,北岡神社:熊本市西区,上色見熊野座神社:高森町,草部吉見神社:高森町,幣立神宮:山都町,青井阿蘇神社:人吉市,八代宮:八代市,八代神社:八代市,菊池神社:菊池市,西岡神宮:宇土市,粟嶋神社:宇土市"],
+["大分県","九州・沖縄","宇佐神宮:宇佐市,柞原八幡宮:大分市,西寒多神社:大分市,春日神社:大分市,早吸日女神社:大分市,大分縣護國神社:大分市,八幡朝見神社:別府市,火男火売神社:別府市,薦神社:中津市,中津大神宮:中津市,奈多宮:杵築市"],
+["宮崎県","九州・沖縄","宮崎神宮:宮崎市,青島神社:宮崎市,江田神社:宮崎市,生目神社:宮崎市,宮崎縣護國神社:宮崎市,鵜戸神宮:日南市,高千穂神社:高千穂町,天岩戸神社:高千穂町,荒立神社:高千穂町,槵觸神社:高千穂町,霧島東神社:高原町,狭野神社:高原町,都農神社:都農町,大御神社:日向市,立磐神社:日向市,都萬神社:西都市"],
+["鹿児島県","九州・沖縄","霧島神宮:霧島市,鹿児島神宮:霧島市,照國神社:鹿児島市,南洲神社:鹿児島市,荒田八幡宮:鹿児島市,鹿児島縣護國神社:鹿児島市,枚聞神社:指宿市,新田神社:薩摩川内市,釜蓋神社:南九州市,蒲生八幡神社:姶良市,竹田神社:日置市,徳重神社:日置市,益救神社:屋久島町"],
+["沖縄県","九州・沖縄","波上宮:那覇市,沖宮:那覇市,識名宮:那覇市,末吉宮:那覇市,安里八幡宮:那覇市,天久宮:那覇市,沖縄縣護國神社:那覇市,普天満宮:宜野湾市,金武宮:金武町,宮古神社:宮古島市"]
+];
+const REGIONS=["北海道・東北","関東","中部","近畿","中国","四国","九州・沖縄"];
+const PREFS=RAW.map(r=>r[0]),REG={};RAW.forEach(r=>REG[r[0]]=r[1]);
+const hash=s=>{let x=5381;for(const c of s)x=((x<<5)+x+c.codePointAt(0))|0;return(x>>>0).toString(36)};
+const BASE=[];RAW.forEach(([p,g,s])=>s.split(",").forEach(e=>{const[n,c]=e.split(":");BASE.push({id:"s"+hash(p+n+c),name:n,city:c||"",pref:p,reg:g})}));
+
+const GROUPS=[
+{k:"ichi",t:"全国一の宮巡り",d:"全国一の宮会の加盟社と新一の宮。国に複数ある一の宮はそれぞれ1社として数えます。",i:"京都府|賀茂別雷神社（上賀茂神社）;京都府|賀茂御祖神社（下鴨神社）;奈良県|大神神社;大阪府|枚岡神社;大阪府|大鳥大社;大阪府|住吉大社;三重県|敢國神社;三重県|椿大神社;三重県|都波岐奈加等神社;三重県|伊雑宮;三重県|伊射波神社;愛知県|真清田神社;愛知県|砥鹿神社;静岡県|小國神社;静岡県|事任八幡宮;静岡県|富士山本宮浅間大社;静岡県|三嶋大社;山梨県|浅間神社（甲斐国一宮）;神奈川県|寒川神社;埼玉県|武蔵一宮氷川神社;千葉県|安房神社;千葉県|玉前神社;千葉県|香取神宮;茨城県|鹿島神宮;滋賀県|建部大社;岐阜県|南宮大社;岐阜県|水無神社;長野県|諏訪大社 上社本宮/長野県|諏訪大社 上社前宮/長野県|諏訪大社 下社秋宮/長野県|諏訪大社 下社春宮;群馬県|一之宮貫前神社;栃木県|宇都宮二荒山神社;栃木県|日光二荒山神社;宮城県|鹽竈神社;福島県|都都古別神社;福島県|都々古別神社（八槻）;山形県|大物忌神社;福井県|若狭彦神社/福井県|若狭姫神社;福井県|氣比神宮;石川県|白山比咩神社;石川県|気多大社;富山県|気多神社;富山県|高瀬神社;富山県|射水神社;富山県|雄山神社;新潟県|彌彦神社;新潟県|居多神社;新潟県|度津神社;京都府|出雲大神宮;京都府|籠神社;兵庫県|出石神社;鳥取県|宇倍神社;鳥取県|倭文神社;島根県|出雲大社;島根県|物部神社;島根県|水若酢神社;島根県|由良比女神社;兵庫県|伊和神社;岡山県|中山神社;岡山県|吉備津彦神社;岡山県|吉備津神社;広島県|吉備津神社;広島県|嚴島神社;山口県|玉祖神社;山口県|住吉神社;和歌山県|日前神宮・國懸神宮;和歌山県|丹生都比売神社;和歌山県|伊太祁曽神社;兵庫県|伊弉諾神宮;徳島県|大麻比古神社;香川県|田村神社;愛媛県|大山祇神社;高知県|土佐神社;福岡県|住吉神社;福岡県|筥崎宮;福岡県|高良大社;大分県|宇佐神宮;大分県|柞原八幡宮;大分県|西寒多神社;佐賀県|與止日女神社;佐賀県|千栗八幡宮;熊本県|阿蘇神社;宮崎県|都農神社;鹿児島県|鹿児島神宮;鹿児島県|枚聞神社;鹿児島県|新田神社;長崎県|天手長男神社;長崎県|海神神社;北海道|北海道神宮;青森県|岩木山神社;岩手県|駒形神社;福島県|伊佐須美神社;埼玉県|秩父神社;沖縄県|波上宮"},
+{k:"gokoku",t:"全国護国神社巡り",d:"各都道府県の護国神社。",i:"北海道|札幌護國神社;北海道|函館護國神社;北海道|北海道護國神社;青森県|青森縣護國神社;岩手県|岩手護國神社;宮城県|宮城縣護國神社;秋田県|秋田県護国神社;山形県|山形県護国神社;福島県|福島縣護國神社;茨城県|茨城縣護國神社;栃木県|栃木縣護國神社;群馬県|群馬県護国神社;埼玉県|埼玉県護国神社;千葉県|千葉縣護國神社;神奈川県|神奈川縣護國神社;新潟県|新潟縣護國神社;富山県|富山縣護國神社;石川県|石川護國神社;福井県|福井県護国神社;山梨県|山梨縣護國神社;長野県|長野縣護國神社;岐阜県|岐阜護國神社;岐阜県|濃飛護國神社;岐阜県|飛騨護國神社;静岡県|静岡縣護國神社;愛知県|愛知縣護國神社;三重県|三重縣護國神社;滋賀県|滋賀縣護國神社;京都府|京都霊山護國神社;大阪府|大阪護國神社;兵庫県|兵庫縣神戸護國神社;兵庫県|姫路護國神社;奈良県|奈良縣護國神社;和歌山県|和歌山縣護國神社;鳥取県|鳥取縣護國神社;島根県|島根縣護國神社;島根県|濱田護國神社;岡山県|岡山縣護國神社;広島県|広島護國神社;広島県|備後護國神社;山口県|山口縣護國神社;徳島県|徳島縣護國神社;香川県|讃岐宮（香川縣護國神社）;愛媛県|愛媛縣護國神社;高知県|高知縣護國神社;福岡県|福岡縣護國神社;佐賀県|佐賀縣護國神社;長崎県|長崎縣護國神社;熊本県|熊本縣護國神社;大分県|大分縣護國神社;宮崎県|宮崎縣護國神社;鹿児島県|鹿児島縣護國神社;沖縄県|沖縄縣護國神社"},
+{k:"22",t:"二十二社巡り",d:"平安時代に朝廷から特別な奉幣を受けた22の神社。伊勢・賀茂・丹生川上は、いずれか1社の参拝で1社と数えます。",i:"三重県|皇大神宮（伊勢神宮 内宮）/三重県|豊受大神宮（伊勢神宮 外宮）;京都府|石清水八幡宮;京都府|賀茂別雷神社（上賀茂神社）/京都府|賀茂御祖神社（下鴨神社）;京都府|松尾大社;京都府|平野神社;京都府|伏見稲荷大社;奈良県|春日大社;京都府|大原野神社;奈良県|大神神社;奈良県|石上神宮;奈良県|大和神社;奈良県|廣瀬大社;奈良県|龍田大社;大阪府|住吉大社;滋賀県|日吉大社;京都府|梅宮大社;京都府|吉田神社;兵庫県|廣田神社;京都府|八坂神社;京都府|北野天満宮;奈良県|丹生川上神社 上社/奈良県|丹生川上神社 中社/奈良県|丹生川上神社 下社;京都府|貴船神社"},
+{k:"ise",t:"伊勢神宮 両正宮と別宮巡り",d:"内宮・外宮の両正宮と、別宮14社。",i:"三重県|皇大神宮（伊勢神宮 内宮）;三重県|荒祭宮;三重県|風日祈宮;三重県|月讀宮;三重県|月讀荒御魂宮;三重県|伊佐奈岐宮;三重県|伊佐奈弥宮;三重県|倭姫宮;三重県|瀧原宮;三重県|瀧原竝宮;三重県|伊雑宮;三重県|豊受大神宮（伊勢神宮 外宮）;三重県|多賀宮;三重県|土宮;三重県|風宮;三重県|月夜見宮"},
+{k:"tokyo10",t:"東京十社めぐり",d:"明治天皇が准勅祭社と定めた都内の10社。",i:"東京都|根津神社;東京都|芝大神宮;東京都|神田神社（神田明神）;東京都|日枝神社;東京都|亀戸天神社;東京都|白山神社;東京都|品川神社;東京都|富岡八幡宮;東京都|王子神社;東京都|赤坂氷川神社"},
+{k:"togoku",t:"東国三社巡り",d:"鹿島・香取・息栖の三社。",i:"茨城県|鹿島神宮;千葉県|香取神宮;茨城県|息栖神社"},
+{k:"kumano",t:"熊野三山",d:"熊野古道の目的地となる三つの大社。",i:"和歌山県|熊野本宮大社;和歌山県|熊野速玉大社;和歌山県|熊野那智大社"},
+{k:"dewa",t:"出羽三山",d:"羽黒山（三神合祭殿）・月山・湯殿山。",i:"山形県|出羽三山神社;山形県|月山神社;山形県|湯殿山神社"},
+{k:"suwa",t:"諏訪大社 四社まいり",d:"上社本宮・前宮、下社秋宮・春宮。",i:"長野県|諏訪大社 上社本宮;長野県|諏訪大社 上社前宮;長野県|諏訪大社 下社秋宮;長野県|諏訪大社 下社春宮"}
+];
+const KEY={};BASE.forEach(s=>KEY[s.pref+"|"+s.name]=s.id);
+GROUPS.forEach(g=>{g.items=g.i.split(";").map(x=>x.split("/").map(k=>{if(!KEY[k])console.warn("missing",k);return KEY[k]}).filter(Boolean))});
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const CHK='<svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+let rec={},custom={},mode="local",col=null,assets=null,view="list",limit=300,openId=null;
+const F={q:"",reg:"",pref:"",s:"all"};
+const LS="sanpai-v1";
+function loadLocal(){try{const o=JSON.parse(localStorage.getItem(LS)||"{}");rec=o.rec||{};custom=o.custom||{}}catch(e){}}
+function saveLocal(){try{localStorage.setItem(LS,JSON.stringify({rec,custom}))}catch(e){toast("この端末に保存できませんでした（容量不足の可能性）")}}
+const chain={};
+function put(key,val){
+  if(mode!=="db"){saveLocal();return}
+  if(val&&JSON.stringify(val).length>250000){toast("この神社の記録が大きすぎて保存できません");return}
+  const ref=col.doc(key);
+  chain[key]=(chain[key]||Promise.resolve()).then(()=>val?ref.set(val):ref.delete()).catch(e=>toast(e&&e.code==="quota_exceeded"?"保存容量の上限に達しました":"保存に失敗しました。もう一度お試しください"));
+}
+let EXTRA=[],cache=null,byId=null,ckey=null;
+function allShrines(){
+  if(!cache||ckey!==custom){ckey=custom;
+    cache=BASE.concat(EXTRA,Object.entries(custom).map(([id,c])=>({id,name:c.name,city:c.city||"",pref:c.pref,reg:REG[c.pref]||"",mine:1})));
+    byId=new Map(cache.map(s=>[s.id,s]))}
+  return cache}
+async function loadExtra(){
+  try{const r=await fetch("shrines.json");if(!r.ok)throw 0;const a=await r.json();
+    EXTRA=a.map(([pi,n,c,la,lo,o])=>{const p=PREFS_ALL[pi];return{id:"o"+o,name:n,city:c,pref:p,reg:REG[p],la,lo}});
+    cache=null;render();if(openId)sheetDyn();
+  }catch(e){toast("全国データを読み込めませんでした")}
+}
+const PREFS_ALL=["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"];
+function setRec(id,patch){
+  const r={...(rec[id]||{}),...patch};
+  const empty=!r.v&&!r.d&&!r.m&&!(r.img&&r.img.length);
+  if(empty)delete rec[id];else rec[id]=r;
+  put("r-"+id,empty?null:r);render();if(openId===id)sheetDyn();
+}
+function toggle(id){const r=rec[id]||{};setRec(id,r.v?{v:false}:{v:true,d:r.d||today()})}
+function status(t){$("#st").textContent=t}
+let tt;function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("on"),2600)}
+const URLS={};
+const IDB={db:null,
+  open(){return new Promise((res,rej)=>{const r=indexedDB.open("sanpai",1);r.onupgradeneeded=()=>r.result.createObjectStore("img");r.onsuccess=()=>res(this.db=r.result);r.onerror=()=>rej(r.error)})},
+  req(mode,fn){return new Promise((res,rej)=>{const q=fn(this.db.transaction("img",mode).objectStore("img"));q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)})},
+  put(k,b){return this.req("readwrite",s=>s.put(b,k))},get(k){return this.req("readonly",s=>s.get(k))},del(k){return this.req("readwrite",s=>s.delete(k))},
+  each(cb){return new Promise((res,rej)=>{const q=this.db.transaction("img").objectStore("img").openCursor();q.onsuccess=()=>{const c=q.result;if(c){cb(c.key,c.value);c.continue()}else res()};q.onerror=()=>rej(q.error)})}};
+const src=x=>x.u||(x.a?"/_blob/"+x.a:(x.k?URLS[x.k]||"":x.d));
+const newKey=()=>"i"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+async function storeBlob(blob){
+  if(assets){const a=await assets.upload(blob);return{a:a.id,u:a.url}}
+  if(mode!=="db"&&IDB.db){const k=newKey();await IDB.put(k,blob);URLS[k]=URL.createObjectURL(blob);try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}return{k}}
+  return{d:await toDataURL(blob)}
+}
+function toDataURL(b){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(b)})}
+function fromDataURL(d){const[m,b64]=d.split(",");const bin=atob(b64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new Blob([u],{type:(m.match(/data:([^;]+)/)||[])[1]||"image/jpeg"})}
+
+/* ---------- render ---------- */
+function header(all){
+  const done=all.filter(s=>rec[s.id]&&rec[s.id].v).length;
+  $("#cnt").innerHTML=done+"<small>社</small>";
+  const pf=new Set(all.filter(s=>rec[s.id]&&rec[s.id].v).map(s=>s.pref)).size;
+  $("#cnt2").textContent="参拝済 ／ 収録 "+all.length+" 社・"+pf+" 都道府県";
+  const p=all.length?done/all.length*100:0;
+  $("#bar").style.width=p+"%";$("#pct").textContent=pc(done,all.length);
+  const ink=Object.values(rec).filter(r=>r.img&&r.img.length).length;
+  $("#pstat").innerHTML=`<span>全体 <b>${pc(done,all.length)}</b> 達成</span><span>都道府県制覇 <b>${pc(pf,47)}</b>（${pf}/47）</span><span>御朱印 <b>${ink}</b> 社</span>`;
+}
+function pc(d,t){if(!t||!d)return"0%";const p=d/t*100;return(p>=100?100:p<10?p.toFixed(1):p.toFixed(1).replace(/\.0$/,""))+"%"}
+function render(){
+  const all=allShrines();header(all);
+  if(view==="list")renderList(all);else if(view==="meguri")renderMeguri();else if(view==="book")renderBook(all);else renderPref(all);
+}
+function renderList(all){
+  const q=F.q.trim().toLowerCase();
+  const hit=all.filter(s=>{const r=rec[s.id]||{};
+    if(F.reg&&s.reg!==F.reg)return false;if(F.pref&&s.pref!==F.pref)return false;
+    if(F.s==="done"&&!r.v)return false;if(F.s==="todo"&&r.v)return false;if(F.s==="ink"&&!(r.img&&r.img.length))return false;
+    if(q&&!(s.name+s.city+s.pref+(r.m||"")).toLowerCase().includes(q))return false;return true});
+  $("#hits").textContent=hit.length+" 社を表示中";
+  if(!hit.length){$("#out").innerHTML='<p class="empty">該当する神社がありません。<br>見つからない場合は下のフォームから追加できます。</p>';return}
+  const shown=hit.slice(0,limit),groups={};
+  shown.forEach(s=>(groups[s.pref]=groups[s.pref]||[]).push(s));
+  const tot={},dn={};all.forEach(s=>{tot[s.pref]=(tot[s.pref]||0)+1;if(rec[s.id]&&rec[s.id].v)dn[s.pref]=(dn[s.pref]||0)+1});
+  $("#out").innerHTML=PREFS.filter(p=>groups[p]).map(p=>`<div class="grp"><h2>${p}<span>${dn[p]||0} / ${tot[p]} 社・${pc(dn[p]||0,tot[p])}</span></h2><ul class="list">${groups[p].map(row).join("")}</ul></div>`).join("")
+   +(hit.length>limit?`<button class="btn more" id="more">さらに表示（残り ${hit.length-limit} 社）</button>`:"");
+}
+function row(s,wp){const r=rec[s.id]||{},n=(r.img||[]).length;
+  const meta=[r.v&&r.d?r.d.replaceAll("-","/"):"",n?"御朱印 "+n:""].filter(Boolean).join("<br>");
+  return `<li class="row${r.v?" done":""}"><button class="chk" data-t="${s.id}" aria-pressed="${!!r.v}" aria-label="${esc(s.name)}を参拝済にする"><b>${CHK}</b></button><button class="info" data-o="${s.id}"><span class="nm">${esc(s.name)}${s.mine?'<span class="mine">追加</span>':""}</span><span class="ct">${wp?esc(s.pref)+" ":""}${esc(s.city)}</span><span class="meta">${meta}</span></button></li>`}
+let openG=null;
+function renderMeguri(){
+  $("#megout").innerHTML=GROUPS.map(g=>{
+    const n=g.items.length,d=g.items.filter(a=>a.some(id=>rec[id]&&rec[id].v)).length,op=openG===g.k;
+    return `<div class="gcard${d===n?" comp":""}"><button class="ghead" data-g="${g.k}" aria-expanded="${op}"><span class="gt">${g.t}${d===n?'<span class="ok">満願</span>':""}</span><span class="gp">${pc(d,n)}</span><span class="gbar"><i style="width:${n?d/n*100:0}%"></i></span><span class="gn">${d} / ${n} 社</span></button>${op?`<p class="note">${g.d}</p><ul class="list">${g.items.map(a=>{const s=find(a[0]);if(a.length===1)return row(s,1);const any=a.find(id=>rec[id]&&rec[id].v);return `<li class="alt"><span class="note">いずれか1社</span><ul class="list">${a.map(id=>row(find(id),1)).join("")}</ul></li>`}).join("")}</ul>`:""}</div>`}).join("");
+}
+function renderBook(all){
+  const by={};all.forEach(s=>by[s.id]=s);
+  const items=[];Object.entries(rec).forEach(([id,r])=>(r.img||[]).forEach((x,i)=>by[id]&&items.push({id,i,x,s:by[id],d:r.d||""})));
+  items.sort((a,b)=>(b.d+b.x.t).localeCompare(a.d+a.x.t));
+  $("#bookout").innerHTML=items.length?`<p class="note">御朱印 ${items.length} 枚</p><div class="gal">${items.map(o=>`<button class="tile" data-lb="${o.id}:${o.i}"><img loading="lazy" src="${esc(src(o.x))}" alt="${esc(o.s.name)}の御朱印"><span>${esc(o.s.name)}<em>${esc(o.s.pref)}${o.d?" ・ "+o.d.replaceAll("-","/"):""}</em></span></button>`).join("")}</div>`
+   :'<p class="empty">まだ御朱印がありません。<br>神社一覧から神社を開き、「御朱印を追加」で写真をアップできます。</p>';
+}
+function renderPref(all){
+  const tot={},dn={};all.forEach(s=>{tot[s.pref]=(tot[s.pref]||0)+1;if(rec[s.id]&&rec[s.id].v)dn[s.pref]=(dn[s.pref]||0)+1});
+  const visited=PREFS.filter(p=>dn[p]).length;
+  $("#prefsum").textContent=`47 都道府県中 ${visited} 都道府県で参拝済（${pc(visited,47)}）。タップするとその県の一覧を開きます。`;
+  const rg=g=>{let d=0,t=0;PREFS.filter(p=>REG[p]===g).forEach(p=>{d+=dn[p]||0;t+=tot[p]||0});return pc(d,t)};
+  $("#prefout").innerHTML=REGIONS.map(g=>`<div class="grp"><h2>${g}<span>${rg(g)}</span></h2>${PREFS.filter(p=>REG[p]===g).map(p=>{const d=dn[p]||0,t=tot[p]||0;return `<button class="pref${d&&d===t?" full":""}" data-p="${p}"><span>${p}</span><span class="bar"><i style="width:${t?d/t*100:0}%"></i></span><span class="n">${pc(d,t)}<br><small>${d} / ${t}</small></span></button>`}).join("")}</div>`).join("");
+}
+
+/* ---------- sheet ---------- */
+function find(id){allShrines();return byId.get(id)}
+function openSheet(id){
+  const s=find(id);if(!s)return;openId=id;const r=rec[id]||{};
+  $("#sheet").innerHTML=`<div class="sh-h"><div><p class="note" style="margin:0 0 4px">${esc(s.pref)} ${esc(s.city)}</p><h2>${esc(s.name)}</h2></div><button class="x" id="xs" aria-label="閉じる">×</button></div>
+  <button class="big-chk" id="bc"></button>
+  ${s.la?`<p class="note" style="margin:0"><a class="map" href="https://www.google.com/maps/search/?api=1&query=${s.la},${s.lo}" target="_blank" rel="noopener">地図で場所を見る</a></p>`:`<p class="note" style="margin:0"><a class="map" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.pref+s.city+" "+s.name)}" target="_blank" rel="noopener">地図で探す</a></p>`}
+  <label class="lbl" for="sd">参拝日</label><input type="date" id="sd" value="${esc(r.d||"")}">
+  <label class="lbl" for="sm">メモ</label><textarea id="sm" rows="3" placeholder="天気、一緒に行った人、印象に残ったことなど">${esc(r.m||"")}</textarea>
+  <span class="lbl">御朱印</span><div class="sgal" id="sg"></div>
+  ${s.mine?'<p style="margin-top:24px"><button class="btn del" id="delc">この神社を一覧から削除</button></p>':""}`;
+  sheetDyn();$("#ov").classList.add("on");$("#xs").focus();
+}
+function sheetDyn(){
+  const r=rec[openId]||{},b=$("#bc");if(!b)return;
+  b.className="big-chk"+(r.v?" on":"");b.innerHTML=`<b>${r.v?CHK:""}</b>${r.v?"参拝済":"参拝済にする"}`;b.setAttribute("aria-pressed",!!r.v);
+  $("#sg").innerHTML=(r.img||[]).map((x,i)=>`<figure><img src="${esc(src(x))}" data-lb="${openId}:${i}" alt="御朱印 ${i+1}"><button class="rm" data-rm="${i}" aria-label="この御朱印を削除">×</button></figure>`).join("")
+   +`<label class="up">＋<br>御朱印を追加<input type="file" id="fi" accept="image/*" multiple></label>`;
+}
+function closeSheet(){$("#ov").classList.remove("on");openId=null}
+let mt;
+async function canvasOf(file,max){
+  let img;try{img=await createImageBitmap(file)}catch(e){img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=URL.createObjectURL(file)})}
+  const w=img.width||img.naturalWidth,h=img.height||img.naturalHeight,k=Math.min(1,max/Math.max(w,h));
+  const c=document.createElement("canvas");c.width=Math.round(w*k);c.height=Math.round(h*k);c.getContext("2d").drawImage(img,0,0,c.width,c.height);return c;
+}
+async function addImages(id,files){
+  const add=[];toast("御朱印をアップロード中…");
+  for(const f of files){try{
+    const small=mode==="db"&&!assets,c=await canvasOf(f,small?800:1600);
+    const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",small?.72:.86));
+    add.push({...await storeBlob(blob),t:Date.now()+add.length})
+  }catch(e){toast("読み込めない画像がありました")}}
+  if(!add.length)return;
+  const r=rec[id]||{},img=(r.img||[]).concat(add);
+  if(mode==="db"&&!assets&&JSON.stringify(img).length>240000){toast("この環境では1社あたりの画像容量に上限があります");return}
+  setRec(id,{img,v:true,d:r.d||today()});toast("御朱印を追加しました");
+}
+function confirmBox(msg,yes){return new Promise(res=>{$("#cfm").textContent=msg;$("#cfy").textContent=yes||"削除する";const o=$("#cfo");o.classList.add("on");
+  const done=v=>{o.classList.remove("on");$("#cfy").onclick=$("#cfn").onclick=null;res(v)};$("#cfy").onclick=()=>done(true);$("#cfn").onclick=()=>done(false);$("#cfy").focus()})}
+function lightbox(key){const[id,i]=key.split(":");const r=rec[id];const x=r&&r.img&&r.img[+i];if(!x)return;const s=find(id);
+  const o=$("#lb");o.querySelector("img").src=src(x);o.querySelector("p").textContent=(s?s.name:"")+(r.d?"　"+r.d.replaceAll("-","/"):"");o.classList.add("on")}
+
+/* ---------- events ---------- */
+$("#fr").innerHTML='<option value="">全地方</option>'+REGIONS.map(g=>`<option>${g}</option>`).join("");
+function prefOpts(){$("#fp").innerHTML='<option value="">全都道府県</option>'+PREFS.filter(p=>!F.reg||REG[p]===F.reg).map(p=>`<option${p===F.pref?" selected":""}>${p}</option>`).join("")}
+prefOpts();
+$("#ap").innerHTML=PREFS.map(p=>`<option>${p}</option>`).join("");$("#ap").value="東京都";
+let qt;$("#q").addEventListener("input",e=>{clearTimeout(qt);qt=setTimeout(()=>{F.q=e.target.value;limit=300;render()},150)});
+$("#fr").addEventListener("change",e=>{F.reg=e.target.value;if(F.pref&&REG[F.pref]!==F.reg)F.pref="";prefOpts();limit=300;render()});
+$("#fp").addEventListener("change",e=>{F.pref=e.target.value;limit=300;render()});
+$("#seg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;F.s=b.dataset.s;$("#seg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));limit=300;render()});
+function setView(v){view=v;document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===v));["list","meguri","book","pref"].forEach(k=>$("#v-"+k).hidden=k!==v);render();window.scrollTo(0,0)}
+document.querySelector(".tabs").addEventListener("click",e=>{const t=e.target.closest(".tab");if(t)setView(t.dataset.v)});
+document.body.addEventListener("click",e=>{
+  const t=e.target.closest("[data-t]");if(t){toggle(t.dataset.t);return}
+  const o=e.target.closest("[data-o]");if(o){openSheet(o.dataset.o);return}
+  const l=e.target.closest("[data-lb]");if(l){lightbox(l.dataset.lb);return}
+  const gg=e.target.closest("[data-g]");if(gg){openG=openG===gg.dataset.g?null:gg.dataset.g;render();return}
+  const p=e.target.closest("[data-p]");if(p){F.pref=p.dataset.p;F.reg=REG[F.pref];$("#fr").value=F.reg;prefOpts();setView("list");return}
+  if(e.target.id==="more"){limit+=300;render()}
+});
+$("#ov").addEventListener("click",async e=>{
+  if(e.target.id==="ov"||e.target.id==="xs"){closeSheet();return}
+  if(e.target.closest("#bc")){toggle(openId);return}
+  const rm=e.target.closest("[data-rm]");
+  if(rm){const id=openId,i=+rm.dataset.rm;if(!await confirmBox("この御朱印の画像を削除しますか？"))return;
+    const r=rec[id]||{},img=(r.img||[]).slice(),[x]=img.splice(i,1);if(x&&x.a&&assets)assets.delete(x.a).catch(()=>{});if(x&&x.k&&IDB.db){IDB.del(x.k).catch(()=>{});URL.revokeObjectURL(URLS[x.k]);delete URLS[x.k]}setRec(id,{img});return}
+  if(e.target.id==="delc"){const id=openId;if(!await confirmBox("この神社と記録を削除しますか？"))return;
+    delete custom[id];cache=null;put("c-"+id,null);if(rec[id]){delete rec[id];put("r-"+id,null)}closeSheet();render()}
+});
+$("#ov").addEventListener("change",e=>{
+  if(e.target.id==="fi"&&e.target.files.length)addImages(openId,[...e.target.files]);
+  if(e.target.id==="sd")setRec(openId,{d:e.target.value});
+});
+$("#ov").addEventListener("input",e=>{if(e.target.id==="sm"){const id=openId,v=e.target.value;clearTimeout(mt);mt=setTimeout(()=>setRec(id,{m:v}),700)}});
+$("#lb").addEventListener("click",()=>$("#lb").classList.remove("on"));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("#lb").classList.contains("on"))$("#lb").classList.remove("on");else if(openId)closeSheet()}});
+$("#addf").addEventListener("submit",e=>{e.preventDefault();const n=$("#an").value.trim();if(!n)return;
+  const id="u"+Date.now().toString(36),c={name:n,pref:$("#ap").value,city:$("#ac").value.trim()};
+  custom[id]=c;cache=null;put("c-"+id,c);$("#an").value="";$("#ac").value="";render();toast(c.name+" を追加しました");openSheet(id)});
+
+/* ---------- backup ---------- */
+async function exportData(){
+  toast("バックアップを作成中…");
+  const images={},outRec={};let miss=0;
+  for(const[id,r]of Object.entries(rec)){const img=[];
+    for(const x of(r.img||[])){try{
+      const key="k"+(x.t||0)+"_"+img.length+"_"+id;let d=null;
+      if(x.d)d=x.d;else if(x.k){const b=await IDB.get(x.k);if(b)d=await toDataURL(b)}else{const b=await(await fetch(src(x))).blob();d=await toDataURL(b)}
+      if(d){images[key]=d;img.push({k:key,t:x.t||0})}else miss++}catch(e){miss++}}
+    outRec[id]={...r,img}}
+  const json=JSON.stringify({app:"sanpai",v:1,at:new Date().toISOString(),rec:outRec,custom,images});
+  const name="神社参拝帳_バックアップ_"+today()+".json";
+  const C=window.claude;let dl=null;if(C&&C.use){try{dl=await C.use("downloads")}catch(e){}}
+  if(dl){try{await dl.save({filename:name,data:new Blob([json])});done()}catch(e){if(e&&e.code!=="declined")toast("書き出せませんでした")}return}
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([json],{type:"application/json"}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);done();
+  function done(){try{localStorage.setItem(LS+"-bk",today())}catch(e){}bkInfo();toast(miss?`書き出しました（画像${miss}枚は読み込めず除外）`:"バックアップを書き出しました")}
+}
+async function importData(file){
+  let o;try{o=JSON.parse(await file.text())}catch(e){toast("バックアップファイルを読み込めませんでした");return}
+  if(!o||o.app!=="sanpai"){toast("神社参拝帳のバックアップではありません");return}
+  const n=Object.keys(o.rec||{}).length;
+  if(!await confirmBox(`バックアップ（${n}社分の記録、画像${Object.keys(o.images||{}).length}枚）を読み込みます。同じ神社の記録は、バックアップの内容で更新されます。`,"読み込む"))return;
+  toast("読み込み中…");
+  for(const[k,c]of Object.entries(o.custom||{})){custom[k]=c;put("c-"+k,c)}cache=null;
+  for(const[id,r]of Object.entries(o.rec||{})){
+    const cur=rec[id]||{},have=new Set((cur.img||[]).map(x=>x.t)),img=(cur.img||[]).slice();
+    for(const x of(r.img||[])){if(have.has(x.t))continue;const d=o.images&&o.images[x.k];if(!d)continue;
+      try{img.push({...await storeBlob(fromDataURL(d)),t:x.t})}catch(e){}}
+    const nr={...cur,...r,img};if(!nr.img.length)delete nr.img;rec[id]=nr;put("r-"+id,nr)}
+  render();toast(`${n}社分の記録を読み込みました`);
+}
+function bkInfo(){let d="";try{d=localStorage.getItem(LS+"-bk")||""}catch(e){}$("#bkinfo").textContent=d?"最後に書き出した日："+d.replaceAll("-","/"):"まだ書き出していません。"}
+$("#exp").addEventListener("click",exportData);
+$("#imp").addEventListener("change",e=>{const f=e.target.files[0];e.target.value="";if(f)importData(f)});
+bkInfo();
+
+/* ---------- start ---------- */
+loadLocal();render();
+status("読み込み中…");
+(async()=>{
+  try{await IDB.open();await IDB.each((k,b)=>{URLS[k]=URL.createObjectURL(b)});render()}catch(e){}
+  const C=window.claude;
+  if(!C||!C.use){status("記録はこのスマホの中に保存されます。ときどきバックアップを書き出してください");return}
+  try{
+    const[db,user]=await Promise.all([C.use("db"),C.use("user")]);
+    const uid=db&&user?await user.id():null;
+    assets=await C.use("assets");
+    if(!db||!uid){status("この端末のブラウザに記録を保存しています（サインインすると全端末で同期）");return}
+    col=db.collection("data/users/"+uid);
+    const tm=setTimeout(()=>status("記録を読み込めていません。通信状況を確認してください"),10000);
+    col.onSnapshot(s=>{
+      if(!s.metadata.fromCache){clearTimeout(tm);status("記録はあなた専用に保存され、どの端末からでも見られます")}
+      const r={},c={};s.docs.forEach(d=>{const v=d.data();if(d.id.startsWith("r-"))r[d.id.slice(2)]=v;else if(d.id.startsWith("c-"))c[d.id.slice(2)]=v});
+      if(mode!=="db"){mode="db";
+        if(s.empty&&!s.metadata.fromCache&&(Object.keys(rec).length||Object.keys(custom).length)){
+          Object.entries(custom).forEach(([k,v])=>{c[k]=v;put("c-"+k,v)});Object.entries(rec).forEach(([k,v])=>{r[k]=v;put("r-"+k,v)})}}
+      rec=r;custom=c;render();if(openId)sheetDyn();
+    },()=>{clearTimeout(tm);status("同期が止まりました。ページを開き直してください")});
+  }catch(e){status("この端末のブラウザに記録を保存しています")}
+})();
+}
+</script>
+</body>
+</html>
