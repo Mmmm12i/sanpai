@@ -83,6 +83,16 @@ ul.list{list-style:none;margin:0;padding:0}
 .gn{font-size:13px;color:var(--mute);white-space:nowrap}
 .ok{font:700 12px "Zen Kaku Gothic New",sans-serif;background:var(--shu);color:#fff;border-radius:4px;padding:1px 6px;margin-left:8px;vertical-align:3px}
 .alt{border-left:3px solid var(--line);padding-left:10px;margin:8px 0;list-style:none}
+.bgmb{position:absolute;top:calc(12px + env(safe-area-inset-top));right:max(4vw,12px);z-index:3;display:flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:20px;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;font-weight:700;font-size:14px}
+.bgmb.on{background:#fff;color:var(--band)}
+.bgmb svg{width:16px;height:16px}
+.bgmp{position:fixed;top:calc(60px + env(safe-area-inset-top));right:max(4vw,12px);z-index:30;width:min(320px,92vw);background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.bgmp h3{font-size:17px;margin-bottom:10px}
+.bgmp label.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}
+.bgmp label.opt input{margin-top:5px;width:18px;height:18px;accent-color:var(--shu)}
+.bgmp input[type=range]{width:100%;accent-color:var(--shu)}
+.bgmp .row2{display:flex;gap:8px;margin-top:12px}
+.bgmp .row2 .btn{flex:1}
 .addbox{margin-top:28px;padding:18px;border:1px dashed var(--line);border-radius:14px;background:var(--paper)}
 .addbox h3{font-size:18px;margin-bottom:10px}
 .f3{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1.4fr) auto;gap:8px}
@@ -131,9 +141,10 @@ ul.list{list-style:none;margin:0;padding:0}
 </head>
 <body>
 <header class="band">
+  <button class="bgmb" id="bgmb" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 2.5v8.1A2.4 2.4 0 1 0 7.5 13V5.3l6-1.5v5.3A2.4 2.4 0 1 0 15 11.5V1z"/></svg><span id="bgmt">BGM</span></button>
   <svg class="torii" viewBox="0 0 300 260" aria-hidden="true"><path fill="#fff" d="M10 40 Q150 10 290 40 L286 62 Q150 36 14 62Z"/><rect x="34" y="78" width="232" height="16" rx="3" fill="#fff"/><rect x="66" y="56" width="22" height="204" fill="#fff"/><rect x="212" y="56" width="22" height="204" fill="#fff"/><rect x="140" y="58" width="20" height="22" fill="#fff"/></svg>
   <div class="in">
-    <div><h1>神社参拝帳</h1><p id="st">記録を読み込んでいます…</p><p style="font-size:13px;opacity:.75;margin-top:2px">第7版（11月22日）・巡り53件</p></div>
+    <div><h1>神社参拝帳</h1><p id="st">記録を読み込んでいます…</p><p style="font-size:13px;opacity:.75;margin-top:2px">第9版（11月23日）・巡り53件・BGM・効果音</p></div>
     <div><div class="big" id="cnt">0<small>社</small></div><div class="sub" id="cnt2">参拝済</div></div>
     <div class="pw"><div class="prog"><i id="bar" style="width:0"></i></div><b id="pct">0%</b></div>
     <div class="pstat" id="pstat"></div>
@@ -176,6 +187,16 @@ ul.list{list-style:none;margin:0;padding:0}
   </section>
 </main>
 <div class="ov" id="ov"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="bgmp" id="bgmp" hidden role="dialog" aria-label="BGMと効果音の設定">
+  <h3>BGM・効果音</h3>
+  <label class="opt" style="border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:4px"><input type="checkbox" id="sfxon" checked><span><b>効果音</b><br><span class="note" style="margin:0">参拝済みで柏手と鈴、御朱印追加で「ぽん」、巡りの満願で祝いの音</span></span></label>
+  <label class="opt"><input type="radio" name="bgmm" value="wa" checked><span><b>和の音</b><br><span class="note" style="margin:0">アプリがその場で作る琴と鈴の音。著作権フリーです</span></span></label>
+  <label class="opt"><input type="radio" name="bgmm" value="file"><span><b>自分の曲</b><br><span class="note" style="margin:0" id="bgmfn">フリーBGMサイトなどで保存した曲を選べます</span></span></label>
+  <label class="btn" style="display:grid;place-items:center;cursor:pointer;margin:4px 0 8px">曲を選ぶ<input type="file" id="bgmf" accept="audio/*" style="position:absolute;width:1px;height:1px;opacity:0"></label>
+  <span class="lbl" style="margin-top:6px">音量</span><input type="range" id="bgmv" min="0" max="100" value="50" aria-label="音量">
+  <div class="row2"><button class="btn p" id="bgmplay">再生</button><button class="btn del" id="bgmclose">閉じる</button></div>
+  <p class="note">iPhoneのマナーモード（消音スイッチ）がオンだと音が出ないことがあります。</p>
+</div>
 <div class="ov" id="lb"><img alt=""><p></p></div>
 <div class="ov" id="cfo"><div class="cf"><p id="cfm"></p><div><button class="btn del" id="cfn">やめる</button><button class="btn p" id="cfy">削除する</button></div></div></div>
 <div id="toast" role="status"></div>
@@ -327,7 +348,10 @@ function setRec(id,patch){
   if(empty)delete rec[id];else rec[id]=r;
   put("r-"+id,empty?null:r);render();if(openId===id)sheetDyn();
 }
-function toggle(id){const r=rec[id]||{};setRec(id,r.v?{v:false}:{v:true,d:r.d||today()})}
+function toggle(id){const r=rec[id]||{},before=doneGroups();setRec(id,r.v?{v:false}:{v:true,d:r.d||today()});
+  if(r.v){sfx("uncheck");return}
+  const fresh=GROUPS.filter(g=>!before.has(g.k)&&doneGroups().has(g.k));
+  if(fresh.length){sfx("mangan");toast(fresh.map(g=>g.t).join("・")+" 満願！おめでとうございます")}else sfx("check")}
 function status(t){$("#st").textContent=t}
 let tt;function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("on"),2600)}
 const URLS={};
@@ -437,7 +461,7 @@ async function addImages(id,files){
   if(!add.length)return;
   const r=rec[id]||{},img=(r.img||[]).concat(add);
   if(mode==="db"&&!assets&&JSON.stringify(img).length>240000){toast("この環境では1社あたりの画像容量に上限があります");return}
-  setRec(id,{img,v:true,d:r.d||today()});toast("御朱印を追加しました");
+  setRec(id,{img,v:true,d:r.d||today()});sfx("stamp");toast("御朱印を追加しました");
 }
 function confirmBox(msg,yes){return new Promise(res=>{$("#cfm").textContent=msg;$("#cfy").textContent=yes||"削除する";const o=$("#cfo");o.classList.add("on");
   const done=v=>{o.classList.remove("on");$("#cfy").onclick=$("#cfn").onclick=null;res(v)};$("#cfy").onclick=()=>done(true);$("#cfn").onclick=()=>done(false);$("#cfy").focus()})}
@@ -519,11 +543,119 @@ $("#exp").addEventListener("click",exportData);
 $("#imp").addEventListener("change",e=>{const f=e.target.files[0];e.target.value="";if(f)importData(f)});
 bkInfo();
 
+/* ---------- BGM ---------- */
+const BGM={ctx:null,master:null,rv:null,timer:null,on:false,drone:[],audio:null,src:null,idx:5,
+  mode:(()=>{try{return localStorage.getItem(LS+"-bgm-mode")||"wa"}catch(e){return"wa"}})(),
+  vol:(()=>{try{const v=localStorage.getItem(LS+"-bgm-vol");return v==null?.5:+v}catch(e){return .5}})()};
+const SCALE=[146.83,164.81,196,220,246.94,293.66,329.63,392,440,493.88,587.33,659.25];
+function bgmCtx(){
+  if(BGM.ctx)return BGM.ctx;
+  const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;
+  const c=new C();BGM.ctx=c;
+  const m=c.createGain();m.gain.value=0;const comp=c.createDynamicsCompressor();m.connect(comp);comp.connect(c.destination);
+  const rv=c.createConvolver(),len=Math.floor(c.sampleRate*3.2),buf=c.createBuffer(2,len,c.sampleRate);
+  for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,3)}
+  rv.buffer=buf;const wet=c.createGain();wet.gain.value=.4;rv.connect(wet);wet.connect(m);
+  BGM.master=m;BGM.rv=rv;return c;
+}
+function pluck(t,f,v){
+  const c=BGM.ctx,o=c.createOscillator(),o2=c.createOscillator(),g=c.createGain(),g2=c.createGain();
+  o.type="triangle";o.frequency.value=f;o2.type="sine";o2.frequency.value=f*2.003;g2.gain.value=.35;
+  o2.connect(g2);g2.connect(g);o.connect(g);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.006);g.gain.exponentialRampToValueAtTime(.0005,t+2.8);
+  g.connect(BGM.master);g.connect(BGM.rv);o.start(t);o2.start(t);o.stop(t+2.9);o2.stop(t+2.9);
+}
+function bell(t){
+  const c=BGM.ctx;[[1,1],[2.76,.5],[5.4,.25]].forEach(([r,a])=>{const o=c.createOscillator(),g=c.createGain();o.type="sine";o.frequency.value=1318.5*r;
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05*a,t+.004);g.gain.exponentialRampToValueAtTime(.0003,t+4);
+    o.connect(g);g.connect(BGM.master);g.connect(BGM.rv);o.start(t);o.stop(t+4.1)});
+}
+function droneOn(){
+  const c=BGM.ctx;[73.42,110].forEach((f,i)=>{const o=c.createOscillator(),g=c.createGain(),l=c.createOscillator(),lg=c.createGain();
+    o.type="sine";o.frequency.value=f;g.gain.value=.035;l.frequency.value=.07+i*.04;lg.gain.value=.02;l.connect(lg);lg.connect(g.gain);
+    o.connect(g);g.connect(BGM.master);o.start();l.start();BGM.drone.push(o,l)});
+}
+function waStep(){
+  if(!BGM.on||BGM.mode!=="wa")return;
+  const t=BGM.ctx.currentTime+.05,n=1+Math.floor(Math.random()*3),mv=[-2,-1,-1,1,1,2];
+  for(let i=0;i<n;i++){BGM.idx=Math.max(0,Math.min(SCALE.length-1,BGM.idx+mv[Math.floor(Math.random()*6)]));pluck(t+i*.34+Math.random()*.05,SCALE[BGM.idx],.15+Math.random()*.08)}
+  if(Math.random()<.09)bell(t+1.2);
+  BGM.timer=setTimeout(waStep,1300+Math.random()*2400+n*300);
+}
+async function bgmFileURL(){try{if(!IDB.db)return null;const b=await IDB.get("_bgm");return b?URL.createObjectURL(b):null}catch(e){return null}}
+async function bgmStart(){
+  const c=bgmCtx();if(!c){toast("この端末では音を再生できません");return}
+  try{await c.resume()}catch(e){}
+  BGM.on=true;
+  if(BGM.mode==="file"){
+    const u=await bgmFileURL();if(!u){toast("先に「曲を選ぶ」で曲を選んでください");BGM.on=false;bgmUI();return}
+    if(!BGM.audio){BGM.audio=new Audio();BGM.audio.loop=true;BGM.audio.setAttribute("playsinline","");BGM.src=c.createMediaElementSource(BGM.audio);BGM.src.connect(BGM.master)}
+    if(BGM.audio.src!==u)BGM.audio.src=u;
+    try{await BGM.audio.play()}catch(e){toast("曲を再生できませんでした");BGM.on=false;bgmUI();return}
+  }else{droneOn();waStep()}
+  BGM.master.gain.cancelScheduledValues(c.currentTime);BGM.master.gain.setValueAtTime(BGM.master.gain.value,c.currentTime);
+  BGM.master.gain.linearRampToValueAtTime(BGM.vol*(BGM.mode==="wa"?.9:1),c.currentTime+1.2);
+  bgmUI();
+}
+function bgmStop(){
+  BGM.on=false;clearTimeout(BGM.timer);const c=BGM.ctx;
+  if(c){BGM.master.gain.cancelScheduledValues(c.currentTime);BGM.master.gain.setValueAtTime(BGM.master.gain.value,c.currentTime);BGM.master.gain.linearRampToValueAtTime(0,c.currentTime+.8)}
+  const d=BGM.drone.splice(0);setTimeout(()=>{d.forEach(o=>{try{o.stop()}catch(e){}});if(BGM.audio&&!BGM.on)BGM.audio.pause()},900);
+  bgmUI();
+}
+function bgmUI(){
+  $("#bgmb").classList.toggle("on",BGM.on);$("#bgmt").textContent=BGM.on?"BGM 再生中":"BGM";
+  $("#bgmplay").textContent=BGM.on?"停止":"再生";
+  document.querySelectorAll('input[name=bgmm]').forEach(r=>r.checked=r.value===BGM.mode);
+  $("#bgmv").value=Math.round(BGM.vol*100);
+}
+$("#bgmb").addEventListener("click",()=>{const p=$("#bgmp");p.hidden=!p.hidden;$("#bgmb").setAttribute("aria-expanded",!p.hidden)});
+$("#bgmclose").addEventListener("click",()=>{$("#bgmp").hidden=true;$("#bgmb").setAttribute("aria-expanded","false")});
+$("#bgmplay").addEventListener("click",()=>BGM.on?bgmStop():bgmStart());
+document.querySelectorAll('input[name=bgmm]').forEach(r=>r.addEventListener("change",()=>{const was=BGM.on;if(was)bgmStop();BGM.mode=r.value;try{localStorage.setItem(LS+"-bgm-mode",BGM.mode)}catch(e){}bgmUI();if(was)setTimeout(bgmStart,950)}));
+$("#bgmv").addEventListener("input",e=>{BGM.vol=e.target.value/100;try{localStorage.setItem(LS+"-bgm-vol",BGM.vol)}catch(err){}
+  if(BGM.on&&BGM.ctx){const c=BGM.ctx;BGM.master.gain.cancelScheduledValues(c.currentTime);BGM.master.gain.setTargetAtTime(BGM.vol*(BGM.mode==="wa"?.9:1),c.currentTime,.1)}});
+$("#bgmf").addEventListener("change",async e=>{const f=e.target.files[0];e.target.value="";if(!f)return;
+  try{await IDB.put("_bgm",f);try{localStorage.setItem(LS+"-bgm-name",f.name)}catch(err){}$("#bgmfn").textContent="選択中："+f.name;
+    const was=BGM.on;if(was)bgmStop();BGM.mode="file";try{localStorage.setItem(LS+"-bgm-mode","file")}catch(err){}if(BGM.audio){BGM.audio.removeAttribute("src")}bgmUI();toast("曲を設定しました。「再生」を押してください")}
+  catch(err){toast("曲を保存できませんでした")}});
+document.addEventListener("visibilitychange",()=>{if(!BGM.ctx)return;if(document.hidden){if(BGM.on)BGM.ctx.suspend()}else if(BGM.on)BGM.ctx.resume()});
+try{const n=localStorage.getItem(LS+"-bgm-name");if(n)$("#bgmfn").textContent="選択中："+n}catch(e){}
+bgmUI();
+window.__sanpaiBGM=BGM;window.__sfxTest=k=>sfx(k);
+
+/* ---------- 効果音 ---------- */
+let SFX_ON=(()=>{try{return localStorage.getItem(LS+"-sfx")!=="0"}catch(e){return true}})();
+$("#sfxon").checked=SFX_ON;
+$("#sfxon").addEventListener("change",e=>{SFX_ON=e.target.checked;try{localStorage.setItem(LS+"-sfx",SFX_ON?"1":"0")}catch(err){}if(SFX_ON)sfx("check")});
+function sfxOut(){
+  const c=bgmCtx();if(!c)return null;try{c.resume()}catch(e){}
+  if(!BGM.sfx){const g=c.createGain();g.gain.value=.7;g.connect(c.destination);const r=c.createConvolver();r.buffer=BGM.rv.buffer;const w=c.createGain();w.gain.value=.25;r.connect(w);w.connect(g);BGM.sfx=g;BGM.sfxrv=r;
+    const len=Math.floor(c.sampleRate*.4),nb=c.createBuffer(1,len,c.sampleRate),d=nb.getChannelData(0);for(let i=0;i<len;i++)d[i]=Math.random()*2-1;BGM.noise=nb}
+  return c;
+}
+function sClap(c,t,v){const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=BGM.noise;f.type="bandpass";f.frequency.value=1400;f.Q.value=.9;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.003);g.gain.exponentialRampToValueAtTime(.001,t+.14);
+  s.connect(f);f.connect(g);g.connect(BGM.sfx);g.connect(BGM.sfxrv);s.start(t);s.stop(t+.16)}
+function sBell(c,t,f0,v,dur){[[1,1],[2.76,.45],[5.4,.2],[8.9,.08]].forEach(([r,a])=>{const o=c.createOscillator(),g=c.createGain();o.type="sine";o.frequency.value=f0*r;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v*a,t+.003);g.gain.exponentialRampToValueAtTime(.0003,t+dur);o.connect(g);g.connect(BGM.sfx);g.connect(BGM.sfxrv);o.start(t);o.stop(t+dur+.05)})}
+function sTone(c,t,f1,f2,v,dur,type){const o=c.createOscillator(),g=c.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f1,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+dur);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0005,t+dur);o.connect(g);g.connect(BGM.sfx);o.start(t);o.stop(t+dur+.05)}
+function sfx(kind){
+  if(!SFX_ON)return;const c=sfxOut();if(!c)return;const t=c.currentTime+.03;
+  if(kind==="check"){sClap(c,t,.55);sClap(c,t+.32,.6);[0,.06,.12].forEach((d,i)=>sBell(c,t+.62+d,2093*(1+i*.012),.09,1.6))}
+  else if(kind==="uncheck"){sTone(c,t,700,420,.12,.09,"triangle")}
+  else if(kind==="stamp"){sTone(c,t,190,70,.5,.18);const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=BGM.noise;f.type="lowpass";f.frequency.value=900;
+    g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.08);s.connect(f);f.connect(g);g.connect(BGM.sfx);s.start(t);s.stop(t+.1)}
+  else if(kind==="mangan"){sTone(c,t,110,55,.7,.5);sTone(c,t+.45,110,55,.7,.5);[587.33,659.25,783.99,880,987.77,1174.66].forEach((f,i)=>sBell(c,t+.9+i*.16,f,.12,2.4));sBell(c,t+2,2349,.1,3)}
+}
+function doneGroups(){return new Set(GROUPS.filter(g=>g.items.every(a=>a.some(id=>rec[id]&&rec[id].v))).map(g=>g.k))}
+
 /* ---------- start ---------- */
 loadLocal();render();
 status("読み込み中…");
 (async()=>{
-  try{await IDB.open();await IDB.each((k,b)=>{URLS[k]=URL.createObjectURL(b)});render()}catch(e){}
+  try{await IDB.open();await IDB.each((k,b)=>{if(k!=="_bgm")URLS[k]=URL.createObjectURL(b)});render()}catch(e){}
   const C=window.claude;
   if(!C||!C.use){status("記録はこのスマホの中に保存されます。ときどきバックアップを書き出してください");return}
   try{
