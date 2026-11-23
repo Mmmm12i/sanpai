@@ -93,6 +93,8 @@ ul.list{list-style:none;margin:0;padding:0}
 .bgmp input[type=range]{width:100%;accent-color:var(--shu)}
 .bgmp .row2{display:flex;gap:8px;margin-top:12px}
 .bgmp .row2 .btn{flex:1}
+.mean{background:var(--soft);border-radius:10px;padding:10px 12px;margin:0 0 6px;font-size:15px;line-height:1.7}
+.mean b{display:block;color:var(--shu);font-size:13px;margin-bottom:2px}
 .addbox{margin-top:28px;padding:18px;border:1px dashed var(--line);border-radius:14px;background:var(--paper)}
 .addbox h3{font-size:18px;margin-bottom:10px}
 .f3{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1.4fr) auto;gap:8px}
@@ -144,7 +146,7 @@ ul.list{list-style:none;margin:0;padding:0}
   <button class="bgmb" id="bgmb" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 2.5v8.1A2.4 2.4 0 1 0 7.5 13V5.3l6-1.5v5.3A2.4 2.4 0 1 0 15 11.5V1z"/></svg><span id="bgmt">BGM</span></button>
   <svg class="torii" viewBox="0 0 300 260" aria-hidden="true"><path fill="#fff" d="M10 40 Q150 10 290 40 L286 62 Q150 36 14 62Z"/><rect x="34" y="78" width="232" height="16" rx="3" fill="#fff"/><rect x="66" y="56" width="22" height="204" fill="#fff"/><rect x="212" y="56" width="22" height="204" fill="#fff"/><rect x="140" y="58" width="20" height="22" fill="#fff"/></svg>
   <div class="in">
-    <div><h1>神社参拝帳</h1><p id="st">記録を読み込んでいます…</p><p style="font-size:13px;opacity:.75;margin-top:2px">第9版（11月23日）・巡り53件・BGM・効果音</p></div>
+    <div><h1>神社参拝帳</h1><p id="st">記録を読み込んでいます…</p><p style="font-size:13px;opacity:.75;margin-top:2px">第12版（11月23日）・巡り53件・BGM・効果音</p></div>
     <div><div class="big" id="cnt">0<small>社</small></div><div class="sub" id="cnt2">参拝済</div></div>
     <div class="pw"><div class="prog"><i id="bar" style="width:0"></i></div><b id="pct">0%</b></div>
     <div class="pstat" id="pstat"></div>
@@ -189,8 +191,9 @@ ul.list{list-style:none;margin:0;padding:0}
 <div class="ov" id="ov"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 <div class="bgmp" id="bgmp" hidden role="dialog" aria-label="BGMと効果音の設定">
   <h3>BGM・効果音</h3>
-  <label class="opt" style="border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:4px"><input type="checkbox" id="sfxon" checked><span><b>効果音</b><br><span class="note" style="margin:0">参拝済みで柏手と鈴、御朱印追加で「ぽん」、巡りの満願で祝いの音</span></span></label>
-  <label class="opt"><input type="radio" name="bgmm" value="wa" checked><span><b>和の音</b><br><span class="note" style="margin:0">アプリがその場で作る琴と鈴の音。著作権フリーです</span></span></label>
+  <label class="opt" style="border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:4px"><input type="checkbox" id="sfxon" checked><span><b>効果音</b><br><span class="note" style="margin:0">参拝済み・御朱印追加・満願のときに、ピアノと琴の短い音が鳴ります</span></span></label>
+  <label class="opt" style="border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:4px"><input type="checkbox" id="bgmauto" checked><span><b>いつもBGMを流す</b><br><span class="note" style="margin:0">アプリを開いて最初に画面をタップしたときに、自動で流れ始めます</span></span></label>
+  <label class="opt"><input type="radio" name="bgmm" value="wa" checked><span><b>和の音</b><br><span class="note" style="margin:0">ピアノと琴の音でアプリがその場で作る曲。著作権フリーです</span></span></label>
   <label class="opt"><input type="radio" name="bgmm" value="file"><span><b>自分の曲</b><br><span class="note" style="margin:0" id="bgmfn">フリーBGMサイトなどで保存した曲を選べます</span></span></label>
   <label class="btn" style="display:grid;place-items:center;cursor:pointer;margin:4px 0 8px">曲を選ぶ<input type="file" id="bgmf" accept="audio/*" style="position:absolute;width:1px;height:1px;opacity:0"></label>
   <span class="lbl" style="margin-top:6px">音量</span><input type="range" id="bgmv" min="0" max="100" value="50" aria-label="音量">
@@ -311,6 +314,7 @@ const GROUPS=[
 {k:"tenjin3",c:"全国",t:"日本三大天神",d:"防府天満宮・太宰府天満宮・北野天満宮。",i:"山口県|防府天満宮;福岡県|太宰府天満宮;京都府|北野天満宮"},
 {k:"hiyoshi7",c:"近畿",t:"日吉大社 山王七社めぐり",d:"日吉大社の主要な7社。西本宮・宇佐宮・白山宮が境内の西側、東本宮・樹下宮と、八王子山の牛尾宮・三宮宮が東側にあります。",i:"滋賀県|日吉大社 西本宮;滋賀県|日吉大社 東本宮;滋賀県|日吉大社 宇佐宮;滋賀県|日吉大社 白山宮;滋賀県|日吉大社 樹下宮;滋賀県|日吉大社 牛尾宮;滋賀県|日吉大社 三宮宮"}
 ];
+const MEAN={"ichi": "一宮は旧国で最も格式が高い神社で、国司が赴任して最初に参拝した神社とされます。全国の一宮を巡ることは、各地の「国の守り神」に挨拶して回ることです。江戸時代の神道家・橘三喜が23年かけて全国を巡拝した記録が有名です。", "gokoku": "各都道府県出身で国のために亡くなった方々の御霊を祀る神社です。郷土を守った人々への感謝と、平和への祈りを捧げる巡りです。", "22": "平安時代、天変地異や国家の大事の際に朝廷が特別に幣帛を奉った22社です。都と国家を守る最も重要な神々で、古代の信仰の中心をたどることができます。", "ise": "伊勢神宮は内宮（天照大御神）と外宮（豊受大御神）を中心とする125社の総称です。別宮は両正宮に次ぐ尊いお宮で、外宮から内宮へと参るのが古くからの習わしです。", "tokyo10": "明治天皇が東京の鎮護と人々の平安を祈る神社として定めた准勅祭社がもとになっています。現在の「東京十社めぐり」は昭和50年に始まったとされます。", "togoku": "鹿島神宮・香取神宮・息栖神社の三社です。江戸時代には、伊勢参りの後に東国三社を巡る「下三宮参り」という習わしがあったとされます。", "kumano": "熊野本宮・速玉・那智の三大社です。平安時代には上皇から庶民まで、列をなして参拝する様子が「蟻の熊野詣」と呼ばれました。熊野は「よみがえりの地」とされます。", "dewa": "羽黒山は現世、月山は過去（死後の世界）、湯殿山は未来を表すとされます。三山を巡ることで生まれ変わりを体験する「生まれかわりの旅」と呼ばれています。", "suwa": "諏訪大社は上社（本宮・前宮）と下社（秋宮・春宮）の4か所からなり、四社すべてを参るのが正式な参拝とされます。7年目ごとの御柱祭でも知られます。", "kanpei": "明治から終戦まで国が祀った神社のうち最上位の格式です。皇室ゆかりの古社や天皇を祀る神宮が多く、日本の神社の頂点を巡る旅になります。", "kokuhei": "国幣社の最上位の6社で、主に各地方の有力な一宮です。それぞれの地域で特に大きな信仰を集めてきた神社です。", "choku": "例祭に天皇の使い（勅使）が遣わされる神社です。皇室と特に深い関係を持つ神社を巡ります。", "kanko": "菅原道真公の生涯ゆかりの地に建つ天満宮を巡ります。京都での生い立ちから太宰府への左遷の道中までをたどる、学業成就を願う巡りとしても知られます。", "hkgokoku": "札幌・函館・旭川の護國神社です。北海道の開拓と守りに尽くした人々の御霊を祀っています。", "shiogama": "陸奥国一宮の鹽竈神社と、同じ境内に鎮座する志波彦神社です。東北を守る神、海の神、安産の神として古くから信仰されています。", "soma": "相馬氏の守り神・妙見を祀る三社です。千年以上続くとされる相馬野馬追は、この三社の祭礼として行われます。", "tokyo5": "東京を代表する格式ある5社です。東京の守りを担う神社を一度に巡ることができます。", "nihonbashi": "すべて神社で構成された珍しい七福神めぐりで、人形町周辺を1〜2時間で歩いて回れます。正月に巡ると一年の福を授かるとされます。", "musashi": "国司が国内の神社を巡る手間を省くため、一之宮〜六之宮の神々を総社にまとめて祀ったのが「六所宮」（大國魂神社）です。元の六社を実際に巡るのは、国司の巡拝をたどる旅です。", "sagami": "毎年5月5日の国府祭（こうのまち）に集う相模国の六社です。一之宮と二之宮が上座を争う「座問答」など、千年以上続くとされる古式の神事で知られます。", "chichibu": "秩父地方を代表する3社です。秩父の山と川に守られた聖地として、あわせて巡られることが多い組み合わせです。", "jomo": "群馬を代表する三つの霊山（赤城・榛名・妙義）の神社です。山そのものを神として仰ぐ山岳信仰の聖地です。", "nikko": "世界遺産「日光の社寺」の中心です。徳川家康公を祀る東照宮、日光の山々を神とする二荒山神社、天台宗の輪王寺を巡ります。", "togakushi": "天岩戸神話にゆかりのある神々を祀る五社です。奥社へ続く杉並木の参道でも知られ、五社すべてで御朱印をいただくと記念のしおりがもらえます。", "hakusan": "霊峰・白山へ登る道の起点となった加賀・越前・美濃の三つの「馬場」です。全国約3,000社ある白山神社の信仰の源をたどる巡りです。", "etchu": "越中国には一宮を名乗る神社が4社あります。国府の移動や時代の移り変わりで一宮が変わってきた歴史を感じられます。", "echigo": "越後国の一宮とされる3社です。弥彦山を御神体と仰ぐ彌彦神社は、「おやひこさま」として親しまれています。", "kyoto5": "平安京は北の玄武・東の青龍・南の朱雀・西の白虎に守られた「四神相応」の地とされます。その方角を守る4社と、中央の平安神宮を巡ります。", "fushimi": "酒どころ伏見の5社寺を巡り、五つの福を授かるとされる正月の巡りです。", "miyako7": "日本最古の七福神めぐりとも言われる京都の七福神です。神社と寺院が一緒になった、神仏習合の名残を感じる巡りです。", "token": "名刀や刀工にゆかりのある京都の神社を巡る企画です。開催期間中は刀剣をあしらった特別な御朱印がいただけます。", "gotai": "熊野詣の道に置かれた王子社（熊野の神の御子を祀る社）のうち、特に格式の高い5社です。熊野古道を歩いて巡る旅の要所です。", "izumo3": "出雲国で特に格が高かった3社です。神話の国・出雲の中心となる神々を巡ります。", "kibi": "古代の吉備国が備前・備中・備後に分かれたため、それぞれに吉備津彦命ゆかりの一宮があります。桃太郎伝説のモデルとされる吉備津彦命をたどる巡りです。", "ishizuchi": "西日本最高峰の石鎚山を御神体とする石鎚神社の4つのお宮です。石鎚山は日本七霊山の一つに数えられます。", "shikoku1": "四国四県それぞれの一宮です。お遍路とは別に、四国の各国の守り神を巡る旅です。", "ryukyu": "琉球王国時代に王府から特別に扱われた8社です。7社は熊野権現を、安里八幡宮は八幡神を祀っています。", "kirishima": "天孫降臨の地とされる高千穂峰を囲むように祀られた霊場です。平安時代に性空上人が整えたと伝わります。", "munakata": "天照大神の三柱の娘神（宗像三女神）をそれぞれ祀る三宮で、沖ノ島を含めて世界遺産です。「道の神」として交通安全の信仰が篤い神社です。", "kyushu1": "九州の各国と壱岐・対馬の一宮です。全国の八幡宮の総本宮・宇佐神宮などを含みます。", "shinbutsu": "明治の神仏分離より前の、神と仏をともに敬った心を取り戻そうと、2008年に設けられた巡礼路です。伊勢神宮から近畿の名だたる社寺を巡ります。", "beppyo": "戦後、神社本庁が旧社格に代わって特別に扱うことにした神社です。全国の主要な神社を網羅的に巡ることになります。", "izumo20": "出雲・伯耆の神社と寺院が宗派を超えて結んだ霊場です。神々の国・出雲の神仏習合の歴史を巡ります。", "kyoto16": "京都の16社を正月の期間に巡る朱印めぐりです。全社を巡ると記念品が授与されることで知られます。", "kamakura7": "鎌倉と江ノ島の社寺8か所（弁財天が2か所）を巡る七福神です。古都鎌倉の散策とあわせて楽しめます。", "sosha": "国司が国内の神社を一つずつ巡る代わりに、各神社の神々を一か所にまとめて祀ったのが総社です。国府の跡の近くにあることが多い神社です。", "iyo7": "愛媛県中予地方の7社寺を巡る七福神です。神社で読経しても、お寺で拍手をしてもよいとされる大らかな巡りです。", "suo5": "周防国の一宮から五宮です。1497年に大内義興が1日で巡拝した記録が残る、中世山口の巡拝路です。", "nagato12": "長門国の一宮・住吉神社と二宮・忌宮神社です。中世には一宮と二宮が合同で祭礼を行うようになった歴史があります。", "tokuji": "山口市徳地は、鎌倉時代に東大寺再建のための木材を切り出した地です。重源上人ゆかりの寺院と古社が残っています。", "sumiyoshi3": "海の神・住吉三神を祀る代表的な3社です。航海安全や和歌の神として信仰されてきました。", "tenjin3": "菅原道真公を祀る代表的な3社です。防府天満宮は、道真公が亡くなった翌年に創建された日本で最初の天満宮と言われています。", "hiyoshi7": "全国約3,800社の日吉・日枝・山王神社の総本宮・日吉大社の中心となる7社です。天台宗では北斗七星の現れとされます。"};
 const KEY={};BASE.forEach(s=>KEY[s.pref+"|"+s.name]=s.id);
 GROUPS.forEach(g=>{g.items=g.i.split(";").map(x=>x.split("/").map(k=>{if(!KEY[k])console.warn("missing",k);return KEY[k]}).filter(Boolean))});
 const $=s=>document.querySelector(s);
@@ -408,7 +412,7 @@ function renderMeguri(){
   const CATS=["全国","北海道・東北","関東","中部","近畿","中国・四国","九州・沖縄"];
   $("#megout").innerHTML=CATS.map(c=>`<h2 class="mcat">${c}</h2>`+GROUPS.filter(g=>g.c===c).map(g=>{
     const n=g.items.length,d=g.items.filter(a=>a.some(id=>rec[id]&&rec[id].v)).length,op=openG===g.k;
-    return `<div class="gcard${d===n?" comp":""}"><button class="ghead" data-g="${g.k}" aria-expanded="${op}"><span class="gt">${g.t}${d===n?'<span class="ok">満願</span>':""}</span><span class="gp">${pc(d,n)}</span><span class="gbar"><i style="width:${n?d/n*100:0}%"></i></span><span class="gn">${d} / ${n} 社</span></button>${op?`<p class="note">${g.d}</p><ul class="list">${g.items.map(a=>{const s=find(a[0]);if(a.length===1)return row(s,1);const any=a.find(id=>rec[id]&&rec[id].v);return `<li class="alt"><span class="note">いずれか1社</span><ul class="list">${a.map(id=>row(find(id),1)).join("")}</ul></li>`}).join("")}</ul>`:""}</div>`}).join("")).join("");
+    return `<div class="gcard${d===n?" comp":""}"><button class="ghead" data-g="${g.k}" aria-expanded="${op}"><span class="gt">${g.t}${d===n?'<span class="ok">満願</span>':""}</span><span class="gp">${pc(d,n)}</span><span class="gbar"><i style="width:${n?d/n*100:0}%"></i></span><span class="gn">${d} / ${n} 社</span></button>${op?`<p class="mean"><b>この巡りの意味</b>${MEAN[g.k]||""}</p><p class="note">${g.d}</p><ul class="list">${g.items.map(a=>{const s=find(a[0]);if(a.length===1)return row(s,1);const any=a.find(id=>rec[id]&&rec[id].v);return `<li class="alt"><span class="note">いずれか1社</span><ul class="list">${a.map(id=>row(find(id),1)).join("")}</ul></li>`}).join("")}</ul>`:""}</div>`}).join("")).join("");
 }
 function renderBook(all){
   const by={};all.forEach(s=>by[s.id]=s);
@@ -575,6 +579,34 @@ function droneOn(){
     o.type="sine";o.frequency.value=f;g.gain.value=.035;l.frequency.value=.07+i*.04;lg.gain.value=.02;l.connect(lg);lg.connect(g.gain);
     o.connect(g);g.connect(BGM.master);o.start();l.start();BGM.drone.push(o,l)});
 }
+const PROG=[[146.83,220,329.63,440],[98,146.83,220,293.66],[123.47,164.81,246.94,329.63],[110,164.81,220,293.66]];
+const KOTO=[293.66,329.63,392,440,493.88,587.33,659.25,783.99,880];
+function piano(t,f,v,dur){
+  const c=BGM.ctx,lp=c.createBiquadFilter();lp.type="lowpass";lp.frequency.value=2400;lp.connect(BGM.master);lp.connect(BGM.rv);
+  [[1,1,1],[2,.42,.65],[3,.18,.45],[4,.08,.3],[5,.04,.2]].forEach(([r,a,dk])=>{const o=c.createOscillator(),g=c.createGain(),e=t+dur*dk;
+    o.type="sine";o.frequency.value=f*r*(1+.0003*r*r);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v*a,t+.005);
+    g.gain.exponentialRampToValueAtTime(v*a*.4,t+.3*dk+.06);g.gain.exponentialRampToValueAtTime(.00008,e);o.connect(g);g.connect(lp);o.start(t);o.stop(e+.05)});
+}
+function koto(t,f,v,bend){
+  const c=BGM.ctx,o=c.createOscillator(),lp=c.createBiquadFilter(),g=c.createGain();o.type="sawtooth";
+  if(bend){o.frequency.setValueAtTime(f*.944,t);o.frequency.linearRampToValueAtTime(f,t+.2)}else o.frequency.value=f;
+  lp.type="lowpass";lp.Q.value=1.5;lp.frequency.setValueAtTime(4200,t);lp.frequency.exponentialRampToValueAtTime(850,t+.4);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.004);g.gain.exponentialRampToValueAtTime(v*.3,t+.3);g.gain.exponentialRampToValueAtTime(.0002,t+2.4);
+  o.connect(lp);lp.connect(g);g.connect(BGM.master);g.connect(BGM.rv);o.start(t);o.stop(t+2.5);
+}
+function waBarAt(t){
+  const beat=.95,ch=PROG[BGM.bar%PROG.length];
+  piano(t,ch[0],.15,5);piano(t+beat*.5,ch[1],.075,4);piano(t+beat,ch[2],.07,4);piano(t+beat*1.5,ch[3],.06,4);
+  if(BGM.bar%2)piano(t+beat*3,ch[2]*2,.045,3.5);
+  if(BGM.bar%4!==3){[0,1,1.5,2,3,3.5].forEach(b=>{if(Math.random()<.42){const mv=[-2,-1,-1,1,1,2][Math.floor(Math.random()*6)];
+    BGM.ki=Math.max(0,Math.min(KOTO.length-1,(BGM.ki??4)+mv));koto(t+beat*b+Math.random()*.03,KOTO[BGM.ki],.075+Math.random()*.03,Math.random()<.15)}})}
+  BGM.bar++;return t+beat*4;
+}
+function waBar(){
+  if(!BGM.on||BGM.mode!=="wa")return;const c=BGM.ctx;
+  BGM.nextT=waBarAt(Math.max(BGM.nextT||0,c.currentTime+.1));
+  BGM.timer=setTimeout(waBar,Math.max(200,(BGM.nextT-c.currentTime-.4)*1000));
+}
 function waStep(){
   if(!BGM.on||BGM.mode!=="wa")return;
   const t=BGM.ctx.currentTime+.05,n=1+Math.floor(Math.random()*3),mv=[-2,-1,-1,1,1,2];
@@ -592,7 +624,7 @@ async function bgmStart(){
     if(!BGM.audio){BGM.audio=new Audio();BGM.audio.loop=true;BGM.audio.setAttribute("playsinline","");BGM.src=c.createMediaElementSource(BGM.audio);BGM.src.connect(BGM.master)}
     if(BGM.audio.src!==u)BGM.audio.src=u;
     try{await BGM.audio.play()}catch(e){toast("曲を再生できませんでした");BGM.on=false;bgmUI();return}
-  }else{droneOn();waStep()}
+  }else{BGM.nextT=0;BGM.bar=0;waBar()}
   BGM.master.gain.cancelScheduledValues(c.currentTime);BGM.master.gain.setValueAtTime(BGM.master.gain.value,c.currentTime);
   BGM.master.gain.linearRampToValueAtTime(BGM.vol*(BGM.mode==="wa"?.9:1),c.currentTime+1.2);
   bgmUI();
@@ -604,7 +636,7 @@ function bgmStop(){
   bgmUI();
 }
 function bgmUI(){
-  $("#bgmb").classList.toggle("on",BGM.on);$("#bgmt").textContent=BGM.on?"BGM 再生中":"BGM";
+  $("#bgmb").classList.toggle("on",BGM.on);$("#bgmt").textContent=BGM.on?"BGM 再生中":(window.__bgmPending?"BGM（タップで開始）":"BGM");
   $("#bgmplay").textContent=BGM.on?"停止":"再生";
   document.querySelectorAll('input[name=bgmm]').forEach(r=>r.checked=r.value===BGM.mode);
   $("#bgmv").value=Math.round(BGM.vol*100);
@@ -622,7 +654,15 @@ $("#bgmf").addEventListener("change",async e=>{const f=e.target.files[0];e.targe
 document.addEventListener("visibilitychange",()=>{if(!BGM.ctx)return;if(document.hidden){if(BGM.on)BGM.ctx.suspend()}else if(BGM.on)BGM.ctx.resume()});
 try{const n=localStorage.getItem(LS+"-bgm-name");if(n)$("#bgmfn").textContent="選択中："+n}catch(e){}
 bgmUI();
-window.__sanpaiBGM=BGM;window.__sfxTest=k=>sfx(k);
+let BGM_AUTO=(()=>{try{return localStorage.getItem(LS+"-bgm-auto")!=="0"}catch(e){return true}})(),autoDone=false;
+$("#bgmauto").checked=BGM_AUTO;window.__bgmPending=BGM_AUTO;
+$("#bgmauto").addEventListener("change",e=>{BGM_AUTO=e.target.checked;try{localStorage.setItem(LS+"-bgm-auto",BGM_AUTO?"1":"0")}catch(err){}window.__bgmPending=false;if(BGM_AUTO&&!BGM.on)bgmStart();else bgmUI()});
+function wake(e){
+  if(BGM.on&&BGM.ctx&&BGM.ctx.state!=="running"){try{BGM.ctx.resume()}catch(err){}if(BGM.audio&&BGM.mode==="file")BGM.audio.play().catch(()=>{})}
+  if(BGM_AUTO&&!autoDone&&!BGM.on&&!(e.target.closest&&e.target.closest("#bgmp,#bgmb"))){autoDone=true;window.__bgmPending=false;bgmStart()}
+}
+document.addEventListener("pointerdown",wake,true);bgmUI();document.addEventListener("touchend",wake,true);
+window.__sanpaiBGM=BGM;window.__bgmPreview=n=>{BGM.bar=0;let t=.1;for(let i=0;i<n;i++)t=waBarAt(t)};window.__sfxTest=k=>sfx(k);
 
 /* ---------- 効果音 ---------- */
 let SFX_ON=(()=>{try{return localStorage.getItem(LS+"-sfx")!=="0"}catch(e){return true}})();
@@ -630,24 +670,23 @@ $("#sfxon").checked=SFX_ON;
 $("#sfxon").addEventListener("change",e=>{SFX_ON=e.target.checked;try{localStorage.setItem(LS+"-sfx",SFX_ON?"1":"0")}catch(err){}if(SFX_ON)sfx("check")});
 function sfxOut(){
   const c=bgmCtx();if(!c)return null;try{c.resume()}catch(e){}
-  if(!BGM.sfx){const g=c.createGain();g.gain.value=.7;g.connect(c.destination);const r=c.createConvolver();r.buffer=BGM.rv.buffer;const w=c.createGain();w.gain.value=.25;r.connect(w);w.connect(g);BGM.sfx=g;BGM.sfxrv=r;
+  if(!BGM.sfx){const g=c.createGain();g.gain.value=.9;g.connect(c.destination);const r=c.createConvolver();r.buffer=BGM.rv.buffer;const w=c.createGain();w.gain.value=.3;r.connect(w);w.connect(g);BGM.sfx=g;BGM.sfxrv=r;
     const len=Math.floor(c.sampleRate*.4),nb=c.createBuffer(1,len,c.sampleRate),d=nb.getChannelData(0);for(let i=0;i<len;i++)d[i]=Math.random()*2-1;BGM.noise=nb}
   return c;
 }
-function sClap(c,t,v){const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=BGM.noise;f.type="bandpass";f.frequency.value=1400;f.Q.value=.9;
-  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.003);g.gain.exponentialRampToValueAtTime(.001,t+.14);
-  s.connect(f);f.connect(g);g.connect(BGM.sfx);g.connect(BGM.sfxrv);s.start(t);s.stop(t+.16)}
-function sBell(c,t,f0,v,dur){[[1,1],[2.76,.45],[5.4,.2],[8.9,.08]].forEach(([r,a])=>{const o=c.createOscillator(),g=c.createGain();o.type="sine";o.frequency.value=f0*r;
-  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v*a,t+.003);g.gain.exponentialRampToValueAtTime(.0003,t+dur);o.connect(g);g.connect(BGM.sfx);g.connect(BGM.sfxrv);o.start(t);o.stop(t+dur+.05)})}
-function sTone(c,t,f1,f2,v,dur,type){const o=c.createOscillator(),g=c.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f1,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+dur);
-  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0005,t+dur);o.connect(g);g.connect(BGM.sfx);o.start(t);o.stop(t+dur+.05)}
+function sPiano(c,t,f,v,dur){const lp=c.createBiquadFilter();lp.type="lowpass";lp.frequency.value=2600;lp.connect(BGM.sfx);lp.connect(BGM.sfxrv);
+  [[1,1],[2,.4],[3,.15],[4,.06]].forEach(([r,a])=>{const o=c.createOscillator(),g=c.createGain(),e=t+dur/Math.sqrt(r);o.type="sine";o.frequency.value=f*r;
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v*a,t+.004);g.gain.exponentialRampToValueAtTime(.0001,e);o.connect(g);g.connect(lp);o.start(t);o.stop(e+.03)})}
+function sKoto(c,t,f,v,dur){const o=c.createOscillator(),lp=c.createBiquadFilter(),g=c.createGain();o.type="sawtooth";o.frequency.value=f;
+  lp.type="lowpass";lp.Q.value=1.2;lp.frequency.setValueAtTime(3800,t);lp.frequency.exponentialRampToValueAtTime(800,t+dur*.6);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.004);g.gain.exponentialRampToValueAtTime(.0002,t+dur);
+  o.connect(lp);lp.connect(g);g.connect(BGM.sfx);g.connect(BGM.sfxrv);o.start(t);o.stop(t+dur+.03)}
 function sfx(kind){
-  if(!SFX_ON)return;const c=sfxOut();if(!c)return;const t=c.currentTime+.03;
-  if(kind==="check"){sClap(c,t,.55);sClap(c,t+.32,.6);[0,.06,.12].forEach((d,i)=>sBell(c,t+.62+d,2093*(1+i*.012),.09,1.6))}
-  else if(kind==="uncheck"){sTone(c,t,700,420,.12,.09,"triangle")}
-  else if(kind==="stamp"){sTone(c,t,190,70,.5,.18);const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=BGM.noise;f.type="lowpass";f.frequency.value=900;
-    g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.08);s.connect(f);f.connect(g);g.connect(BGM.sfx);s.start(t);s.stop(t+.1)}
-  else if(kind==="mangan"){sTone(c,t,110,55,.7,.5);sTone(c,t+.45,110,55,.7,.5);[587.33,659.25,783.99,880,987.77,1174.66].forEach((f,i)=>sBell(c,t+.9+i*.16,f,.12,2.4));sBell(c,t+2,2349,.1,3)}
+  if(!SFX_ON)return;const c=sfxOut();if(!c)return;const t=c.currentTime+.02;
+  if(kind==="check"){sKoto(c,t,440,.07,.45);sKoto(c,t+.11,587.33,.07,.55)}
+  else if(kind==="uncheck"){sPiano(c,t,293.66,.07,.3)}
+  else if(kind==="stamp"){sPiano(c,t,196,.12,.4);sKoto(c,t+.05,392,.04,.35)}
+  else if(kind==="mangan"){sPiano(c,t,146.83,.1,1);sPiano(c,t,220,.06,1);[440,493.88,587.33,659.25,880].forEach((f,i)=>sKoto(c,t+.05+i*.09,f,.06,.6))}
 }
 function doneGroups(){return new Set(GROUPS.filter(g=>g.items.every(a=>a.some(id=>rec[id]&&rec[id].v))).map(g=>g.k))}
 
